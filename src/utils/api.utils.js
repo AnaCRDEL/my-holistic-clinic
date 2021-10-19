@@ -18,13 +18,13 @@ class Api {
             (error) => console.log(error)
         );
 
-        // this.api.interceptors.response.use(
-        //     (response) => response,
-        //     (error) => {
-        //         localStorage.removeItem('token')
-        //         window.location = '/login'
-        //     }
-        // )
+        this.api.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                localStorage.removeItem('token')
+                window.location = '/login'
+            }
+        )
     };
 
     signup = async (payload) => {
@@ -55,6 +55,14 @@ class Api {
         }
     };
 
+    getOneProfessional = async (id) => {
+        try {
+            return await this.api.get(`/professionals/${id}`)
+        } catch (error) {
+            console.log('getOneProfessional error', error)
+        }
+    };
+
     updatedProfessional = async (id, payload) => {
         try {
             await this.api.put(`/professionals/${id}`, payload);
@@ -78,6 +86,15 @@ class Api {
             console.log('getPatients error', error)
         }
     };
+
+    getOnePatient = async (id) => {
+        try {
+            return await this.api.get(`/patients/${id}`)
+        } catch (error) {
+            console.log('getOnePatient error', error)
+        }
+    };
+
 
     addPatient = async (payload) => {
         try {

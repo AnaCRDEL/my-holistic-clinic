@@ -37,6 +37,20 @@ class AddAppointment extends Component {
         });
     };  
 
+    handlePatientChange = (event) => {
+        const patient = this.state.patientsList.find(patient => patient.nome === event.target.value)
+        this.setState({
+            paciente: patient._id,
+        })
+    }; 
+
+    handleProfessionalChange = (event) => {
+        const professional = this.state.professionalsList.find(professional => professional.nome === event.target.value)
+        this.setState({
+            profissional: professional._id
+        })
+    }; 
+
     handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -55,28 +69,29 @@ class AddAppointment extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Criar novo atendimento</h3>
+            <div className='div-form'>
                 <form onSubmit={this.handleSubmit}>
                 <label name='data'>Data:</label>
                 <input type='date' name='data' value={this.state.data} onChange={this.handleChange} />
                 <label name='horario'>Horário:</label>
                 <input type='time' name='horario' value={this.state.horario} onChange={this.handleChange} />
                 <label name='paciente'>Paciente:</label>
-                <select name='paciente'>
+                <select name='paciente' onChange={this.handlePatientChange}>
+                    <option value=''>Selecione</option>
                     {this.state.patientsList.map((patient) => (
-                        <option key={patient._id} name='paciente' value={patient.nome} onChange={this.handleChange}>{patient.nome}</option>
+                        <option key={patient._id} value={patient.nome}>{patient.nome}</option>
                         )
                     )}
                 </select> 
                 <label name='profissional'>Profissional:</label>
-                <select name='profissional'>
+                <select name='profissional' onChange={this.handleProfessionalChange}>
+                    <option value=''>Selecione</option>
                     {this.state.professionalsList.map((profissional) => (
-                        <option key={profissional._id} name='profissional' value={profissional.nome} onChange={this.handleChange}>{profissional.nome}</option>
+                        <option key={profissional._id} value={profissional.nome} onChange={this.handleSelectChange}>{profissional.nome}</option>
                         )
                     )}
                 </select> 
-                <button type='submit'>Adicionar</button>
+                <button className='button' type='submit'>Criar</button>
                 </form>
             </div>
         )

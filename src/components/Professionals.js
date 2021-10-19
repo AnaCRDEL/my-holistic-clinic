@@ -2,11 +2,13 @@ import api from '../utils/api.utils';
 import React from 'react';
 import Navbar from './Navbar';
 import Signup from './Signup';
+import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
 class Professionals extends Component {
     state = {
         professionals: [],
+        addProfessional: false
     };
 
     getProfessionals = async () => {
@@ -20,21 +22,11 @@ class Professionals extends Component {
         this.getProfessionals();
     };
 
-    // handleCheck = async (event) => {
-    //     const id = event.target.id;
-    //     const payload = {
-    //         'title': event.target.name,
-    //         'completed': event.target.checked
-    //     }
-    //     await api.updateProfessional(id, payload)
-    //     await this.getProfessionals();
-    // };
-
-    // onClick = async (event) => {
-    //     const id = event.target.id;
-    //     await api.deleteProfessional(id);
-    //     await this.getProfessionals();
-    // };
+    handleOnClick = () => {
+        this.setState({
+            addProfessional: !this.state.addProfessional
+        });
+    };
 
     render() {
         return(
@@ -43,24 +35,34 @@ class Professionals extends Component {
                     <Navbar/>
                 </div>
                 <div>
-                    <table border="1">
-                        <tr>
-                            <td>Nome</td>
-                            <td>Telefone</td>
-                            <td>Especialidades</td>
-                        </tr>
-                        {this.state.professionals.map((item) => (
-                            <tr key={item._id}>
-                                <td>{item.nome}</td>
-                                <td>{item.telefone}</td>
-                                <td>{item.especialidades}</td>
+                    <table cellSpacing='0' border='1' className='div-table'>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Especialidades</th>
                             </tr>
-                        )
-                    )}
+                        </thead>
+                        <tbody>
+                            {this.state.professionals.map((professional) => (
+                                <tr key={professional._id}>
+                                    <td><NavLink to={`professionals/${professional._id}`}>{professional.nome}</NavLink></td>
+                                    <td>{professional.telefone}</td>
+                                    <td>{professional.especialidades}</td>
+                                </tr>
+                                )
+                            )}
+                        </tbody>
                     </table>
                 </div>
                 <div>
-                    <Signup getProfessionals={this.getProfessionals}/>
+                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addProfessional ? 'Cancelar' : 'Cadastrar novo profissional'}</button>
+                    {this.state.addProfessional === true ? 
+                        <div>
+                            <Signup getProfessionals={this.getProfessionals}/>
+                        </div> :
+                        <div></div>
+                    }
                 </div>
             </>
         )

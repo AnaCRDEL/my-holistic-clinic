@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import api from '../utils/api.utils';
 
-class AddPatient extends Component {
+class EditPatient extends Component {
     state = {
         nome: '',
         telefone: '',
@@ -9,17 +9,34 @@ class AddPatient extends Component {
         email: '',
         endereço: '',
         sintomas: ''
-    };    
+    };   
     
-    getPatients = async () => {
-        const response = await api.getPatients();
+    setDate = (date) => {
+        const getDate = date.split('T')[0].split('-')
+        const getDay = getDate[2];
+        const getMonth = getDate[1];
+        const getYear = getDate[0];
+        const newDate = `${getYear}-${getMonth}-${getDay}`
         this.setState({
-            patientsList: response.data
+            dataNascimento : newDate
+        })
+    };
+
+    getPatient = async () => {
+        const response = await api.getOnePatient(this.props.id);
+        const {nome, telefone, dataNascimento, email, endereço, sintomas} = response.data;
+        this.setDate(dataNascimento)
+        this.setState({
+            nome,
+            telefone,
+            email,
+            endereço,
+            sintomas
         })
     };
 
     componentDidMount = async () => {
-        this.getPatients();
+        await this.getPatient();
     };
 
     handleChange = (event) => {
@@ -32,16 +49,9 @@ class AddPatient extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await api.addPatient(this.state)
-            await this.props.getPatients();
-            this.setState({
-                nome: '',
-                telefone: '',
-                dataNascimento: '',
-                email: '',
-                endereço: '',
-                sintomas: ''
-            });
+            await api.updatedPatient(this.props.id, this.state);
+            await this.getPatient();
+            console.log(this.state)
         } catch (error) {
             console.log(error)
         }
@@ -49,12 +59,12 @@ class AddPatient extends Component {
 
     render() {
         return (
-            <div className='div-form'>
+            <div className='div-table-details'>
                 <form onSubmit={this.handleSubmit}>
                 <label name='data'>Nome:</label>
                 <input type='text' name='nome' value={this.state.nome} onChange={this.handleChange} />
                 <label name='telefone'>Telefone:</label>
-                <input type='tel' name='telefone' placeholder="(99)9999-99999" value={this.state.telefone} onChange={this.handleChange} />
+                <input type='tel' name='telefone' value={this.state.telefone} onChange={this.handleChange} />
                 <label name='dataNascimento'>Data de Nascimento:</label>
                 <input type='date' name='dataNascimento' value={this.state.dataNascimento} onChange={this.handleChange} />
                 <label name='email'>Email:</label>
@@ -63,11 +73,11 @@ class AddPatient extends Component {
                 <input type='text' name='endereço' value={this.state.endereço} onChange={this.handleChange} />
                 <label name='sintomas'>Sintomas:</label>
                 <textarea name='sintomas' value={this.state.sintomas} onChange={this.handleChange}/>
-                <button className='button' type='submit'>Criar</button>
+                <button className='button' type='submit'>Salvar alterações</button>
                 </form>
             </div>
         )
     }
 }
 
-export default AddPatient;
+export default EditPatient;

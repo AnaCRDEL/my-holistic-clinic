@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
+@import '../node_modules/@fontsource/roboto/300.css';
+@import '../node_modules/@fontsource/roboto/400.css';
+@import '../node_modules/@fontsource/roboto/500.css';
+@import '../node_modules/@fontsource/roboto/700.css';
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: Helvetica;
+    font-size: 18px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar{
+    background-color: #84a59d;
+    height: 30px;
+    text-align: left;
+    padding-top: 8px;
+    font-size: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-bar a {
+    text-decoration: none;
+    color: #F7EDE2;
+    margin: 10px;
+    padding: 7px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-bar a:hover {
+    background-color: #74928b;
 }
 
-.App-link {
-  color: #61dafb;
+.div-form {
+    background-color: #84A59D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 5%;
+    padding: 0px 10px 20px 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.div-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-form input,
+.div-form textarea,
+.div-form select {
+    color: #555454;
+    background-color: #fffaf5;
+}
+
+.button {
+    color: #4D3E51;
+    background-color: #fffaf5;
+    margin: 5px;
+    width: 80px;
+    border-radius: 5px;
+}
+
+.button-add {
+    color: white;
+    background-color: #A68D91;
+    margin: 0% 0% 1% 5%;
+    width: 85px;
+    border-radius: 5px;
+}
+
+.div-table {
+    background-color: #F2DADE;
+    color: #4D3E51;
+    width: 90%;
+    text-align: center;
+    margin: 20px 0px 20px 5%;
+}
+
+.div-table thead {
+    background-color: #A68D91;
+    color: #F6F3F6;
+}
+
+.div-table-details {
+    background-color: #f7d7d2;
+    text-align: left;
+    width: 90%;
+    color: #4D3E51;
+    margin: 20px 0px 20px 5%;
+}
+
+.div-table-details th {
+    background-color: #f28482;
+    color: #F6F3F6;
+    width: 190px;
+    height: 30px;
+}
+
+.div-table-details td {
+    color: #4D3E51;
 }

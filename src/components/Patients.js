@@ -2,11 +2,13 @@ import api from '../utils/api.utils';
 import React from 'react';
 import Navbar from './Navbar';
 import AddPatient from './AddPatient';
+import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
 class Patients extends Component {
     state = {
         patients: [],
+        addPatient: false
     };
 
     getPatients = async () => {
@@ -20,21 +22,11 @@ class Patients extends Component {
         this.getPatients();
     };
 
-    // handleCheck = async (event) => {
-    //     const id = event.target.id;
-    //     const payload = {
-    //         'title': event.target.name,
-    //         'completed': event.target.checked
-    //     }
-    //     await api.updateProfessional(id, payload)
-    //     await this.getProfessionals();
-    // };
-
-    // onClick = async (event) => {
-    //     const id = event.target.id;
-    //     await api.deleteProfessional(id);
-    //     await this.getProfessionals();
-    // };
+    handleOnClick = () => {
+        this.setState({
+            addPatient: !this.state.addPatient
+        });
+    }; 
 
     render() {
         return(
@@ -43,22 +35,32 @@ class Patients extends Component {
                     <Navbar/>
                 </div>
                 <div>
-                    <table border="1">
-                        <tr>
-                            <td>Nome</td>
-                            <td>Telefone</td>
-                        </tr>
-                        {this.state.patients.map((patient) => (
-                            <tr key={patient._id}>
-                                <td>{patient.nome}</td>
-                                <td>{patient.telefone}</td>
+                    <table cellSpacing='0' border='1' className='div-table'>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
                             </tr>
-                            )
-                        )}
+                        </thead>
+                        <tbody>
+                            {this.state.patients.map((patient) => (
+                                <tr key={patient._id}>
+                                    <td><NavLink to={`patients/${patient._id}`}>{patient.nome}</NavLink></td>
+                                    <td>{patient.telefone}</td>
+                                </tr>
+                                )
+                            )}
+                        </tbody>
                     </table>
                 </div>
                 <div>
-                    <AddPatient getPatients={this.getPatients}/>
+                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
+                    {this.state.addPatient === true ? 
+                        <div>
+                            <AddPatient getPatients={this.getPatients}/>
+                        </div> :
+                        <div></div>
+                    }
                 </div>
             </>
         )
