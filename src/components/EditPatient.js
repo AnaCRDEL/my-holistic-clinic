@@ -51,7 +51,8 @@ class EditPatient extends Component {
         try {
             await api.updatedPatient(this.props.id, this.state);
             await this.getPatient();
-            console.log(this.state)
+            await this.props.handleOnClick();
+            await this.props.getPatient();
         } catch (error) {
             console.log(error)
         }

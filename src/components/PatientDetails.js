@@ -13,7 +13,6 @@ class PatientDetails extends Component {
         endereço: '',
         sintomas: '',
         editPatient: false,
-        deactivationReason: ''
     };
 
     getPatient = async () => {
@@ -30,6 +29,7 @@ class PatientDetails extends Component {
     };
 
     setDate = (date) => {
+        console.log(new Date(date).toLocaleDateString('br', {timeZone: 'UTC'}))
         const getDate = date.split('T')[0].split('-')
         const getDay = getDate[2];
         const getMonth = getDate[1];
@@ -50,14 +50,13 @@ class PatientDetails extends Component {
         });
     }; 
 
-    handleOnClickDisablePatient = () => {
-        const deactivationReason = prompt('Digite o motivo da desativação deste cliente:')
+    handleOnClickDisablePatient = async () => {
+        const deactivationReason = await prompt('Tem certeza que deseja desativar esse cliente? Digite o motivo da desativação:')
         if (deactivationReason) {
             this.setState({
                 deactivationReason
             })
         }
-        console.log(deactivationReason)
         console.log(this.state.deactivationReason)
     };
 
@@ -69,10 +68,10 @@ class PatientDetails extends Component {
                 </div>
                 <div>
                     <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações do Paciente'}</button>
-                    <button className='button' onClick={()=>{this.handleOnClickDisablePatient()}}>Desativar Paciente</button>
+                    <button className='button-deactivate' onClick={()=>{this.handleOnClickDisablePatient()}}>Desativar Paciente</button>
                     {this.state.editPatient === true ? 
                         <div>
-                            <EditPatient id={this.props.match.params.id}/>
+                            <EditPatient id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getPatient={this.getPatient}/>
                         </div> :
                         <div>
                             <table cellSpacing='0' border='1' className='div-table-details'>

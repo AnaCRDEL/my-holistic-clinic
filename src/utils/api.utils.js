@@ -112,14 +112,6 @@ class Api {
         }
     };
 
-    deletePatient = async (id) => {
-        try {
-            await this.api.delete(`/patients/${id}`);
-        } catch (error) {
-            console.log('deletePatient error', error)
-        }
-    };
-
     getAppointments = async () => {
         try {
             return await this.api.get('/appointments')
@@ -149,6 +141,38 @@ class Api {
             await this.api.delete(`/appointments/${id}`);
         } catch (error) {
             console.log('deleteAppointment error', error)
+        }
+    };
+
+    getDisabledPatients = async () => {
+        try {
+            return await this.api.get('/disabledPatients')
+        } catch (error) {
+            console.log('getPatients error', error)
+        }
+    };
+
+    getOneDisabledPatient = async (id) => {
+        try {
+            return await this.api.get(`/disabledPatients/${id}`)
+        } catch (error) {
+            console.log('getOnePatient error', error)
+        }
+    };
+
+    addDisabledPatient = async (payload) => {
+        try {
+            await this.api.post('/disabledPatients', payload);
+        } catch (error) {
+            console.log('addPatient error', error)
+        }
+    };
+
+    updatedDisabledPatient = async (id, payload) => {
+        try {
+            await this.api.put(`/disabledPatients/${id}`, payload);
+        } catch (error) {
+            console.log('updatePatient error', error)
         }
     };
 };
