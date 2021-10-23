@@ -3,20 +3,20 @@ import api from '../utils/api.utils';
 
 class EditProfessional extends Component {
     state = {
-        nome: '',
-        telefone: '',
+        name: '',
+        phoneNumber: '',
         email: '',
-        especialidades: ''
+        knownTechniques: ''
     };    
 
     getProfessional = async () => {
         const response = await api.getOneProfessional(this.props.id);
-        const {nome, telefone, email, especialidades} = response.data;
+        const {name, phoneNumber, email, knownTechniques} = response.data;
         this.setState({
-            nome, 
-            telefone, 
+            name, 
+            phoneNumber, 
             email, 
-            especialidades
+            knownTechniques
         })
     }
 
@@ -45,14 +45,14 @@ class EditProfessional extends Component {
         return (
             <div className='div-table-details'>
                 <form onSubmit={this.handleSubmit}>
-                <label name='data'>Nome:</label>
-                <input type='text' name='nome' value={this.state.nome} onChange={this.handleChange} />
-                <label name='telefone'>Telefone:</label>
-                <input type='tel' name='telefone' value={this.state.telefone} onChange={this.handleChange} />
+                <label name='name'>Nome:</label>
+                <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+                <label name='phoneNumber'>Telefone:</label>
+                <input type='tel' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleChange} />
                 <label name='email'>Email:</label>
                 <input type='email' name='email' value={this.state.email} onChange={this.handleChange} />
-                <label name='especialidades'>Especialidades:</label>
-                <textarea name='especialidades' value={this.state.especialidades} onChange={this.handleChange}/>
+                <label name='knownTechniques'>Especialidades:</label>
+                <textarea name='knownTechniques' value={this.state.knownTechniques} onChange={this.handleChange}/>
                 <button className='button' type='submit'>Salvar alterações</button>
                 </form>
             </div>

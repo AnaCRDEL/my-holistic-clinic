@@ -102,3 +102,48 @@ body {
 .div-table-details td {
     color: #4D3E51;
 }
+
+.div-edit-form {
+    background-color: #F2DADE;
+    text-align: left;
+    width: 90%;
+    color: #4D3E51;
+    margin: 60px 0px 20px 5%;
+    font-weight: bolder;
+}
+
+.div-edit-form label {
+    background-color: #A68D91;
+    color: #F6F3F6;
+    width: 30%;
+    height: 100px;
+    margin-right: 5px;
+    padding: 8px 100px 10px 5px;
+}
+
+.text-input {
+    background-color: #fffaf5;
+    color: #4D3E51;
+    width:40%;
+    height: 30px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.numeric-input {
+    background-color: #fffaf5;
+    color: #4D3E51;
+    width: 12%;
+    height: 30px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.textarea-input {
+    background-color: #fffaf5;
+    color: #4D3E51;
+    width: 50%;
+    height: 30px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}

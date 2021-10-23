@@ -120,6 +120,15 @@ class Api {
         }
     };
 
+    getOneAppointment = async (id) => {
+        try {
+            return await this.api.get(`/appointments/${id}`)
+        } catch (error) {
+            console.log('getOneAppointment error', error)
+        }
+    };
+
+
     addAppointment = async (payload) => {
         try {
             await this.api.post('/appointments', payload);

@@ -46,9 +46,9 @@ class Professionals extends Component {
                         <tbody>
                             {this.state.professionals.map((professional) => (
                                 <tr key={professional._id}>
-                                    <td><NavLink to={`professionals/${professional._id}`}>{professional.nome}</NavLink></td>
-                                    <td>{professional.telefone}</td>
-                                    <td>{professional.especialidades}</td>
+                                    <td><NavLink to={`professionals/${professional._id}`}>{professional.name}</NavLink></td>
+                                    <td>{professional.phoneNumber}</td>
+                                    <td>{professional.knownTechniques}</td>
                                 </tr>
                                 )
                             )}

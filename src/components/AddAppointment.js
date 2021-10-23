@@ -3,10 +3,10 @@ import api from '../utils/api.utils';
 
 class AddAppointment extends Component {
     state = {
-        data: '',
-        horario: '',
-        paciente: '',
-        profissional: '',
+        date: '',
+        time: '',
+        patient: '',
+        professional: '',
         patientsList: [],
         professionalsList: []
     };    
@@ -38,29 +38,29 @@ class AddAppointment extends Component {
     };  
 
     handlePatientChange = (event) => {
-        const patient = this.state.patientsList.find(patient => patient.nome === event.target.value)
+        const patient = this.state.patientsList.find(patient => patient.name === event.target.value)
         this.setState({
-            paciente: patient._id,
+            patient: patient._id,
         })
     }; 
 
     handleProfessionalChange = (event) => {
-        const professional = this.state.professionalsList.find(professional => professional.nome === event.target.value)
+        const professional = this.state.professionalsList.find(professional => professional.name === event.target.value)
         this.setState({
-            profissional: professional._id
+            professional: professional._id
         })
     }; 
 
     handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await api.addAppointment(this.state)
+            await api.addAppointment(this.state);
             await this.props.getAppointments();
             this.setState({
-                data: '',
-                horario: '',
-                paciente: '',
-                profissional: '',
+                date: '',
+                time: '',
+                patient: '',
+                professional: '',
             });
         } catch (error) {
             console.log(error)
@@ -71,23 +71,23 @@ class AddAppointment extends Component {
         return (
             <div className='div-form'>
                 <form onSubmit={this.handleSubmit}>
-                <label name='data'>Data:</label>
-                <input type='date' name='data' value={this.state.data} onChange={this.handleChange} />
-                <label name='horario'>Horário:</label>
-                <input type='time' name='horario' value={this.state.horario} onChange={this.handleChange} />
-                <label name='paciente'>Paciente:</label>
-                <select name='paciente' onChange={this.handlePatientChange}>
+                <label name='date'>Data:</label>
+                <input type='date' name='date' value={this.state.date} onChange={this.handleChange} />
+                <label name='time'>Horário:</label>
+                <input type='time' name='time' value={this.state.time} onChange={this.handleChange} />
+                <label name='patient'>Paciente:</label>
+                <select name='patient' onChange={this.handlePatientChange}>
                     <option value=''>Selecione</option>
                     {this.state.patientsList.map((patient) => (
-                        <option key={patient._id} value={patient.nome}>{patient.nome}</option>
+                        <option key={patient._id} value={patient.name}>{patient.name}</option>
                         )
                     )}
                 </select> 
-                <label name='profissional'>Profissional:</label>
-                <select name='profissional' onChange={this.handleProfessionalChange}>
+                <label name='professional'>Profissional:</label>
+                <select name='professional' onChange={this.handleProfessionalChange}>
                     <option value=''>Selecione</option>
-                    {this.state.professionalsList.map((profissional) => (
-                        <option key={profissional._id} value={profissional.nome} onChange={this.handleSelectChange}>{profissional.nome}</option>
+                    {this.state.professionalsList.map((professional) => (
+                        <option key={professional._id} value={professional.name} onChange={this.handleSelectChange}>{professional.name}</option>
                         )
                     )}
                 </select> 

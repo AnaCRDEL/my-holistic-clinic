@@ -2,6 +2,7 @@ import api from '../utils/api.utils';
 import React from 'react';
 import Navbar from './Navbar';
 import AddAppointment from './AddAppointment';
+import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
 class Appointments extends Component {
@@ -18,12 +19,8 @@ class Appointments extends Component {
     }
 
     setDate = (date) => {
-        const getDate = date.split('T')[0].split('-')
-        const getDay = getDate[2];
-        const getMonth = getDate[1];
-        const getYear = getDate[0];
-        const newDate = `${getDay}/${getMonth}/${getYear}`
-        return newDate
+        const appointmentDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
+        return appointmentDate
     };
 
     componentDidMount = async () => {
@@ -55,10 +52,10 @@ class Appointments extends Component {
                         <tbody>
                             {this.state.appointments.map((appointment) => (
                                 <tr key={appointment._id}>
-                                    <td>{this.setDate(appointment.data)}</td>
-                                    <td>{appointment.horario}</td>
-                                    <td>{appointment.profissional.nome}</td>
-                                    <td>{appointment.paciente.nome}</td>
+                                    <td><NavLink to={`appointments/${appointment._id}`}>{this.setDate(appointment.date)}</NavLink></td>
+                                    <td>{appointment.time}</td>
+                                    <td>{appointment.professional.name}</td>
+                                    <td>{appointment.patient.name}</td>
                                 </tr>
                             )
                             )}

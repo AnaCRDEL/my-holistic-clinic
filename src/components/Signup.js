@@ -3,11 +3,11 @@ import api from '../utils/api.utils';
 
 class Signup extends Component {
     state = {
-        nome: '',
+        name: '',
         email: '',
         password: '',
-        telefone: '',
-        especialidades: '',
+        phoneNumber: '',
+        knownTechniques: '',
         message: ''
     };
 
@@ -24,11 +24,11 @@ class Signup extends Component {
             await api.signup(this.state)
             await this.props.getProfessionals();
             this.setState({
-                nome: '',
+                name: '',
                 email: '',
                 password: '',
-                telefone: '',
-                especialidades: '',
+                phoneNumber: '',
+                knownTechniques: '',
                 message: 'User successfully created'
             })
         } catch (error) {
@@ -43,14 +43,14 @@ class Signup extends Component {
         return (
             <div className='div-form'> 
                 <form onSubmit={this.handleSubmit}>
-                    <label>Nome</label>
-                    <input type='text' name='nome' value={this.state.nome} onChange={this.handleInput}/>
-                    <label>Email</label>
+                    <label name='name'>Nome</label>
+                    <input type='text' name='name' value={this.state.name} onChange={this.handleInput}/>
+                    <label name='email'>Email</label>
                     <input type='text' name='email' value={this.state.email} onChange={this.handleInput}/>
-                    <label>Telefone</label>
-                    <input type='number' name='telefone' value={this.state.telefone} onChange={this.handleInput}/>
-                    <label>Especialidades</label>
-                    <input type='text' name='especialidades' value={this.state.especialidades} onChange={this.handleInput}/>
+                    <label name='phoneNumber'>Telefone</label>
+                    <input type='number' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleInput}/>
+                    <label name='knownTechniques'>Especialidades</label>
+                    <input type='text' name='knownTechniques' value={this.state.knownTechniques} onChange={this.handleInput}/>
                     <label>Password</label>
                     <input type='password' name='password' value={this.state.password} onChange={this.handleInput}/> 
                     <button className='button' type='submit'>Criar</button>

@@ -45,8 +45,8 @@ class Patients extends Component {
                         <tbody>
                             {this.state.patients.map((patient) => (
                                 <tr key={patient._id}>
-                                    <td><NavLink to={`patients/${patient._id}`}>{patient.nome}</NavLink></td>
-                                    <td>{patient.telefone}</td>
+                                    <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
+                                    <td>{patient.phoneNumber}</td>
                                 </tr>
                                 )
                             )}

@@ -3,12 +3,14 @@ import api from '../utils/api.utils';
 
 class AddPatient extends Component {
     state = {
-        nome: '',
-        telefone: '',
-        dataNascimento: '',
+        patientCode: 0,
+        name: '',
+        phoneNumber: '',
+        birthDate: '',
         email: '',
-        endereço: '',
-        sintomas: ''
+        address: '',
+        symptoms: '',
+        existingPatients: 0
     };    
     
     getPatients = async () => {
@@ -35,12 +37,12 @@ class AddPatient extends Component {
             await api.addPatient(this.state)
             await this.props.getPatients();
             this.setState({
-                nome: '',
-                telefone: '',
-                dataNascimento: '',
+                name: '',
+                phoneNumber: '',
+                birthDate: '',
                 email: '',
-                endereço: '',
-                sintomas: ''
+                address: '',
+                symptoms: ''
             });
         } catch (error) {
             console.log(error)
@@ -52,17 +54,17 @@ class AddPatient extends Component {
             <div className='div-form'>
                 <form onSubmit={this.handleSubmit}>
                 <label name='data'>Nome:</label>
-                <input type='text' name='nome' value={this.state.nome} onChange={this.handleChange} />
-                <label name='telefone'>Telefone:</label>
-                <input type='tel' name='telefone' placeholder="(99)9999-99999" value={this.state.telefone} onChange={this.handleChange} />
-                <label name='dataNascimento'>Data de Nascimento:</label>
-                <input type='date' name='dataNascimento' value={this.state.dataNascimento} onChange={this.handleChange} />
+                <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+                <label name='phoneNumber'>Telefone:</label>
+                <input type='tel' name='phoneNumber' placeholder="(99)9999-99999" value={this.state.phoneNumber} onChange={this.handleChange} />
+                <label name='birthDate'>Data de Nascimento:</label>
+                <input type='date' name='birthDate' value={this.state.birthDate} onChange={this.handleChange} />
                 <label name='email'>Email:</label>
                 <input type='email' name='email' value={this.state.email} onChange={this.handleChange} />
-                <label name='endereço'>Endereço:</label>
-                <input type='text' name='endereço' value={this.state.endereço} onChange={this.handleChange} />
-                <label name='sintomas'>Sintomas:</label>
-                <textarea name='sintomas' value={this.state.sintomas} onChange={this.handleChange}/>
+                <label name='address'>Endereço:</label>
+                <input type='text' name='address' value={this.state.endereço} onChange={this.handleChange} />
+                <label name='symptoms'>Sintomas:</label>
+                <textarea name='symptoms' value={this.state.symptoms} onChange={this.handleChange}/>
                 <button className='button' type='submit'>Criar</button>
                 </form>
             </div>

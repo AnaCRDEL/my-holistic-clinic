@@ -11,6 +11,7 @@ import Appointments from './components/Appointments';
 import PublicHome from './components/public/Home'
 import PatientDetails from './components/PatientDetails';
 import ProfessionalDetails from './components/ProfessionalDetails';
+import AppointmentDetails from './components/AppointmentDetails';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route exact path='/patients/:id' component={PatientDetails}/>
       <Route exact path='/professionals/:id' component={ProfessionalDetails}/>
       <Route exact path='/appointments' component={Appointments}/>
+      <Route exact path='/appointments/:id' component={AppointmentDetails}/>
     </div>
   );
 }
