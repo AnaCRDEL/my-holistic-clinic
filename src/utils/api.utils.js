@@ -153,37 +153,6 @@ class Api {
         }
     };
 
-    getDisabledPatients = async () => {
-        try {
-            return await this.api.get('/disabledPatients')
-        } catch (error) {
-            console.log('getPatients error', error)
-        }
-    };
-
-    getOneDisabledPatient = async (id) => {
-        try {
-            return await this.api.get(`/disabledPatients/${id}`)
-        } catch (error) {
-            console.log('getOnePatient error', error)
-        }
-    };
-
-    addDisabledPatient = async (payload) => {
-        try {
-            await this.api.post('/disabledPatients', payload);
-        } catch (error) {
-            console.log('addPatient error', error)
-        }
-    };
-
-    updatedDisabledPatient = async (id, payload) => {
-        try {
-            await this.api.put(`/disabledPatients/${id}`, payload);
-        } catch (error) {
-            console.log('updatePatient error', error)
-        }
-    };
 };
 
 export default new Api();

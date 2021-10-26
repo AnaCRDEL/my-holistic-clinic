@@ -5,7 +5,7 @@ import AddAppointment from './AddAppointment';
 import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
-class Appointments extends Component {
+class PastAppointments extends Component {
     state = {
         appointments: [],
         addAppointment: false
@@ -51,7 +51,7 @@ class Appointments extends Component {
                         </thead>
                         <tbody>
                             {this.state.appointments.map((appointment) => (
-                                this.setDate(appointment.date) >= this.setDate(new Date()) ? 
+                                this.setDate(appointment.date) < this.setDate(new Date()) ? 
                                 <tr key={appointment._id}>
                                     <td><NavLink to={`appointments/${appointment._id}`}>{this.setDate(appointment.date)}</NavLink></td>
                                     <td>{appointment.time}</td>
@@ -66,9 +66,9 @@ class Appointments extends Component {
                 </div>
                 <div>
                     <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addAppointment ? 'Cancelar' : 'Criar novo atendimento'}</button>
-                    <NavLink to='/past-appointments'><button className='button-add'> Atendimentos passados </button></NavLink>
                     {this.state.addAppointment === true ? 
                         <div>
+                            <AddAppointment getAppointments={this.getAppointments}/>
                             <AddAppointment getAppointments={this.getAppointments}/>
                         </div> :
                         <div></div>
@@ -79,4 +79,4 @@ class Appointments extends Component {
     }
 };
 
-export default Appointments;
+export default PastAppointments;

@@ -15,12 +15,14 @@ class PatientDetails extends Component {
         address: '',
         symptoms: '',
         appointments: [],
+        deactivationReason: '',
         editPatient: false,
+        isActive: true
     };
 
     getPatient = async () => {
         const response = await api.getOnePatient(this.props.match.params.id);
-        const {name, phoneNumber, birthDate, email, address, symptoms, appointments} = response.data;
+        const { name, phoneNumber, birthDate, email, address, symptoms, appointments, isActive } = response.data;
         this.setState({
             name,
             phoneNumber,
@@ -28,6 +30,7 @@ class PatientDetails extends Component {
             address,
             symptoms,
             appointments,
+            isActive,
             birthDate: this.setDate(birthDate)
         })
     };
@@ -39,7 +42,6 @@ class PatientDetails extends Component {
 
     componentDidMount = async () => {
         await this.getPatient();
-        console.log(this.state.appointments)
     };
 
     handleOnClick = () => {
@@ -48,14 +50,31 @@ class PatientDetails extends Component {
         });
     }; 
 
-    handleOnClickDisablePatient = async () => {
+    handleOnClickNonActivePatient = async () => {
         const deactivationReason = await prompt('Tem certeza que deseja desativar esse cliente? Digite o motivo da desativação:')
         if (deactivationReason) {
             this.setState({
-                deactivationReason
+                deactivationReason,
+                isActive: !this.state.isActive
             })
+            const updatedPatient = {
+                deactivationReason: this.state.deactivationReason,
+                isActive: this.state.isActive
+            }
+            await api.updatedPatient(this.props.match.params.id, updatedPatient);
         }
-        console.log(this.state.deactivationReason)
+    };
+
+    handleOnClickActivePatient = async () => {
+        if (await window.confirm('Tem certeza que deseja resativar esse cliente?')) {
+            this.setState({
+                isActive: !this.state.isActive
+            })
+            const updatedPatient = {
+                isActive: this.state.isActive
+            }
+            await api.updatedPatient(this.props.match.params.id, updatedPatient);
+        }
     };
 
     render() {
@@ -66,7 +85,11 @@ class PatientDetails extends Component {
                 </div>
                 <div>
                     <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações do Paciente'}</button>
-                    <button className='button-deactivate' onClick={()=>{this.handleOnClickDisablePatient()}}>Desativar Paciente</button>
+                    {this.state.isActive ?
+                    <button className='button-deactivate' onClick={()=>{this.handleOnClickNonActivePatient()}}>Desativar Paciente</button>
+                    : 
+                    <button className='button-activate' onClick={()=>{this.handleOnClickActivePatient()}}>Reativar Paciente</button>
+                    }
                     {this.state.editPatient === true ? 
                         <div>
                             <EditPatient id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getPatient={this.getPatient}/>

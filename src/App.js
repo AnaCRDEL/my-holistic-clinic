@@ -12,6 +12,8 @@ import PublicHome from './components/public/Home'
 import PatientDetails from './components/PatientDetails';
 import ProfessionalDetails from './components/ProfessionalDetails';
 import AppointmentDetails from './components/AppointmentDetails';
+import NonActivePatients from './components/NonActivePatients';
+import PastAppointments from './components/PastAppointments';
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
       <Route exact path='/professionals/:id' component={ProfessionalDetails}/>
       <Route exact path='/appointments' component={Appointments}/>
       <Route exact path='/appointments/:id' component={AppointmentDetails}/>
+      <Route exact path='/non-active-patients' component={NonActivePatients}/>
+      <Route exact path='/past-appointments' component={PastAppointments}/>
     </div>
   );
 }

@@ -1,14 +1,12 @@
 import api from '../utils/api.utils';
 import React from 'react';
 import Navbar from './Navbar';
-import AddPatient from './AddPatient';
 import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
-class Patients extends Component {
+class NonActivePatients extends Component {
     state = {
         patients: [],
-        addPatient: false
     };
 
     getPatients = async () => {
@@ -21,12 +19,6 @@ class Patients extends Component {
     componentDidMount = async () => {
         this.getPatients();
     };
-
-    handleOnClick = () => {
-        this.setState({
-            addPatient: !this.state.addPatient
-        });
-    }; 
 
     render() {
         return(
@@ -44,7 +36,7 @@ class Patients extends Component {
                         </thead>
                         <tbody>
                             {this.state.patients.map((patient) => (
-                                patient.isActive ?  
+                                !patient.isActive ?  
                                 <tr key={patient._id}>
                                     <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
                                     <td>{patient.phoneNumber}</td>
@@ -54,19 +46,9 @@ class Patients extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div>
-                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
-                    <NavLink to='/non-active-patients'><button className='button-add'>Lista de Pacientes desativados</button></NavLink>
-                    {this.state.addPatient === true ? 
-                        <div>
-                            <AddPatient getPatients={this.getPatients}/>
-                        </div> :
-                        <div></div>
-                    }
-                </div>
             </>
         )
     }
 };
 
-export default Patients;
+export default NonActivePatients;
