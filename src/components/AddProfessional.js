@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import api from '../utils/api.utils';
 
-class Signup extends Component {
+class AddProfessional extends Component {
     state = {
         name: '',
         email: '',
@@ -41,8 +41,8 @@ class Signup extends Component {
 
     render() {
         return (
-            <div className='div-form'> 
-                <form onSubmit={this.handleSubmit}>
+            <div className='div-add-professional'> 
+                <form className='form-add-professional' onSubmit={this.handleSubmit}>
                     <label name='name'>Nome</label>
                     <input type='text' name='name' value={this.state.name} onChange={this.handleInput}/>
                     <label name='email'>Email</label>
@@ -53,7 +53,7 @@ class Signup extends Component {
                     <input type='text' name='knownTechniques' value={this.state.knownTechniques} onChange={this.handleInput}/>
                     <label>Password</label>
                     <input type='password' name='password' value={this.state.password} onChange={this.handleInput}/> 
-                    <button className='button' type='submit'>Criar</button>
+                    <button className='button-form' type='submit'>Criar</button>
                 </form>
                 {this.state.message ? 
                     <div>{this.state.message}</div> : null}
@@ -62,4 +62,4 @@ class Signup extends Component {
     }
 };
 
-export default Signup;
+export default AddProfessional;

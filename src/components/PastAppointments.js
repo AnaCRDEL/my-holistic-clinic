@@ -1,7 +1,6 @@
 import api from '../utils/api.utils';
 import React from 'react';
 import Navbar from './Navbar';
-import AddAppointment from './AddAppointment';
 import { NavLink } from 'react-router-dom';
 const { Component } = require("react");
 
@@ -18,7 +17,7 @@ class PastAppointments extends Component {
         })
     }
 
-    setDate = (date) => {
+    formatDate = (date) => {
         const appointmentDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
         return appointmentDate
     };
@@ -39,40 +38,27 @@ class PastAppointments extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
-                    <table cellSpacing='0' border='1' className='div-table'>
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Horário</th>
-                                <th>Profissional</th>
-                                <th>Paciente</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.appointments.map((appointment) => (
-                                this.setDate(appointment.date) < this.setDate(new Date()) ? 
-                                <tr key={appointment._id}>
-                                    <td><NavLink to={`appointments/${appointment._id}`}>{this.setDate(appointment.date)}</NavLink></td>
-                                    <td>{appointment.time}</td>
-                                    <td>{appointment.professional.name}</td>
-                                    <td>{appointment.patient.name}</td>
-                                </tr>
-                                : null 
-                            )
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addAppointment ? 'Cancelar' : 'Criar novo atendimento'}</button>
-                    {this.state.addAppointment === true ? 
-                        <div>
-                            <AddAppointment getAppointments={this.getAppointments}/>
-                            <AddAppointment getAppointments={this.getAppointments}/>
-                        </div> :
-                        <div></div>
-                    }
+                <div className='appointments-page'>
+                    <h2>Atendimentos Realizados</h2>
+                    <div className='div-appointment-cards'> 
+                        {this.state.appointments.map((appointment) => (
+                            this.formatDate(appointment.date) < this.formatDate(new Date()) ? 
+                            <div className='appointment-card'> 
+                                <div cellSpacing='0' border='1' className='div-appointment'>
+                                    <p className='professional-name'>{appointment.professional.name}</p>
+                                    <p>Dia: {this.formatDate(appointment.date)}</p>
+                                    <p>Horário: {appointment.time}</p>
+                                    <p>Paciente: {appointment.patient.name}</p>
+                                </div>
+                                <div>
+                                    <NavLink className='appointment-details-link' to={`appointments/${appointment._id}`}>Ver detalhes</NavLink>
+                                </div>
+                            </div>
+                            : null 
+                        )
+                        )}
+                    </div>
+                    
                 </div>
             </>
         )

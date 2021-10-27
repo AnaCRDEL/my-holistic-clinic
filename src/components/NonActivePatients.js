@@ -26,25 +26,28 @@ class NonActivePatients extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
-                    <table cellSpacing='0' border='1' className='div-table'>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Telefone</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.patients.map((patient) => (
-                                !patient.isActive ?  
-                                <tr key={patient._id}>
-                                    <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
-                                    <td>{patient.phoneNumber}</td>
+                <div className='non-active-patients-page'>
+                    <h2>Pacientes Desativados</h2>
+                    <div className='div-patients-table'>
+                        <table cellSpacing='0' border='1' className='patient-table'>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
                                 </tr>
-                                : null ) 
-                            )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {this.state.patients.map((patient) => (
+                                    !patient.isActive ?  
+                                    <tr key={patient._id}>
+                                        <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
+                                        <td>{patient.phoneNumber}</td>
+                                    </tr>
+                                    : null ) 
+                                )}
+                            </tbody>
+                        </table>
+                        </div>
                 </div>
             </>
         )

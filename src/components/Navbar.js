@@ -9,10 +9,10 @@ class Navbar extends Component {
         return (
             <>
                 <div className='nav-bar'>  
-                    <NavLink to='/home'> <img src='' alt='home-logo'/> </NavLink>
-                    <NavLink to='/patients'>Pacientes</NavLink>
-                    <NavLink to='/professionals'>Profissionais</NavLink>
-                    <NavLink to='/appointments'>Atendimentos</NavLink>
+                    <NavLink to='/home'> <img id='logo-img' src='../logo-home.png' alt='home-logo'/> </NavLink>
+                    <NavLink className='nav-link' to='/patients'>Pacientes</NavLink>
+                    <NavLink className='nav-link' to='/professionals'>Profissionais</NavLink>
+                    <NavLink className='nav-link' to='/appointments'>Atendimentos</NavLink>
                 </div>
             </>
         )

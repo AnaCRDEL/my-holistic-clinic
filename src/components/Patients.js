@@ -34,35 +34,38 @@ class Patients extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
-                    <table cellSpacing='0' border='1' className='div-table'>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Telefone</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.patients.map((patient) => (
-                                patient.isActive ?  
-                                <tr key={patient._id}>
-                                    <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
-                                    <td>{patient.phoneNumber}</td>
+                <div className='patients-page'>
+                    <h2>Pacientes</h2>
+                    <div className='div-buttons'>
+                        <button className='button-add-patient' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
+                        <NavLink to='/non-active-patients'><button className='button-non-active-patients'>Pacientes desativados</button></NavLink>
+                        {this.state.addPatient === true ? 
+                            <div>
+                                <AddPatient getPatients={this.getPatients}/>
+                            </div> :
+                            <div></div>
+                        }
+                    </div>
+                    <div className='div-patients-table'>
+                        <table cellSpacing='0' border='1' className='patient-table'>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
                                 </tr>
-                                : null ) 
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
-                    <NavLink to='/non-active-patients'><button className='button-add'>Lista de Pacientes desativados</button></NavLink>
-                    {this.state.addPatient === true ? 
-                        <div>
-                            <AddPatient getPatients={this.getPatients}/>
-                        </div> :
-                        <div></div>
-                    }
+                            </thead>
+                            <tbody>
+                                {this.state.patients.map((patient) => (
+                                    patient.isActive ?  
+                                    <tr key={patient._id}>
+                                        <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>
+                                        <td>{patient.phoneNumber}</td>
+                                    </tr>
+                                    : null ) 
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </>
         )

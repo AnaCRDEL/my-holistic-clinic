@@ -69,8 +69,8 @@ class AddAppointment extends Component {
 
     render() {
         return (
-            <div className='div-form'>
-                <form onSubmit={this.handleSubmit}>
+            <div className='div-add-professional'>
+                <form className='form-add-professional' onSubmit={this.handleSubmit}>
                 <label name='date'>Data:</label>
                 <input type='date' name='date' value={this.state.date} onChange={this.handleChange} />
                 <label name='time'>Horário:</label>
@@ -91,7 +91,7 @@ class AddAppointment extends Component {
                         )
                     )}
                 </select> 
-                <button className='button' type='submit'>Criar</button>
+                <button className='button-form' type='submit'>Criar</button>
                 </form>
             </div>
         )

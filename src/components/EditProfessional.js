@@ -43,8 +43,8 @@ class EditProfessional extends Component {
 
     render() {
         return (
-            <div className='div-table-details'>
-                <form onSubmit={this.handleSubmit}>
+            <div className='div-edit-form'>
+                <form className='edit-form' onSubmit={this.handleSubmit}>
                 <label name='name'>Nome:</label>
                 <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
                 <label name='phoneNumber'>Telefone:</label>
@@ -53,7 +53,7 @@ class EditProfessional extends Component {
                 <input type='email' name='email' value={this.state.email} onChange={this.handleChange} />
                 <label name='knownTechniques'>Especialidades:</label>
                 <textarea name='knownTechniques' value={this.state.knownTechniques} onChange={this.handleChange}/>
-                <button className='button' type='submit'>Salvar alterações</button>
+                <button className='button-save-edit' type='submit'>Salvar alterações</button>
                 </form>
             </div>
         )

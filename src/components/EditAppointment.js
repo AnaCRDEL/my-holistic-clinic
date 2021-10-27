@@ -77,7 +77,7 @@ class EditAppointment extends Component {
     render() {
         return (
             <div className='div-edit-form'>
-                <form onSubmit={this.handleSubmit}>
+                <form className='edit-form' onSubmit={this.handleSubmit}>
                 <label name='date'>Data:</label>
                 <input type='date' name='date' value={this.state.date} onChange={this.handleChange} />
                 <label name='time'>Telefone:</label>
@@ -98,7 +98,7 @@ class EditAppointment extends Component {
                 <textarea name='afterAppointment' value={this.state.afterAppointment} onChange={this.handleChange}/>
                 <label name='treatment'>Quais técnicas e tratamentos foram utilizados no atendimento:</label>
                 <textarea name='treatment' value={this.state.treatment} onChange={this.handleChange}/>
-                <button className='button' type='submit'>Salvar alterações</button>
+                <button className='button-save-edit' type='submit'>Salvar alterações</button>
                 </form>
             </div>
         )

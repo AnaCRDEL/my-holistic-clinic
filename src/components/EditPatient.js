@@ -61,32 +61,32 @@ class EditPatient extends Component {
     render() {
         return (
             <div className='div-edit-form'>
-                <form onSubmit={this.handleSubmit}>
+                <form className='edit-form' onSubmit={this.handleSubmit}>
                     <div>
-                        <label name='name'>Nome:</label>
+                        <label name='name'>Nome</label>
                         <input className='text-input' type='text' name='name' value={this.state.name} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label name='phoneNumber'>Telefone:</label>
+                        <label name='phoneNumber'>Telefone</label>
                         <input className='numeric-input' type='tel' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label name='birthDate'>Data de Nascimento:</label>
-                        <input className='numeric-input' type='date' name='birthDate' value={this.state.birthDate} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <label name='email'>Email:</label>
+                        <label name='email'>Email</label>
                         <input className='text-input' type='email' name='email' value={this.state.email} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label name='address'>Endereço:</label>
+                        <label name='birthDate'>Data de Nascimento</label>
+                        <input className='numeric-input' type='date' name='birthDate' value={this.state.birthDate} onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <label name='address'>Endereço</label>
                         <textarea className='textarea-input' name='address' value={this.state.address} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <label name='symptoms'>Sintomas:</label>
+                        <label name='symptoms'>Sintomas</label>
                         <textarea className='textarea-input' name='symptoms' value={this.state.symptoms} onChange={this.handleChange}/>
                     </div>
-                    <button className='button' type='submit'>Salvar alterações</button>
+                    <button className='button-save-edit' type='submit'>Salvar alterações</button>
                 </form>
             </div>
         )

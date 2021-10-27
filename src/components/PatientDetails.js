@@ -83,51 +83,55 @@ class PatientDetails extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
-                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações do Paciente'}</button>
-                    {this.state.isActive ?
-                    <button className='button-deactivate' onClick={()=>{this.handleOnClickNonActivePatient()}}>Desativar Paciente</button>
-                    : 
-                    <button className='button-activate' onClick={()=>{this.handleOnClickActivePatient()}}>Reativar Paciente</button>
-                    }
+                <div className='patient-details-page'>
+                    <div className='buttons-div-details'> 
+                        <button className='button-edit-patient' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações'}</button>
+                        {this.state.isActive ?
+                        <button className='button-deactivate' onClick={()=>{this.handleOnClickNonActivePatient()}}>Desativar Paciente</button>
+                        : 
+                        <button className='button-activate' onClick={()=>{this.handleOnClickActivePatient()}}>Reativar Paciente</button>
+                        }
+                    </div>
                     {this.state.editPatient === true ? 
                         <div>
                             <EditPatient id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getPatient={this.getPatient}/>
                         </div> :
-                        <div>
-                            <table cellSpacing='0' border='1' className='div-table-details'>
+                        <div className='div-patient-details'>
+                            <table cellSpacing='0' border='1' className='patient-details-table'>
                                 <tbody>
                                     <tr>
-                                        <th>Nome:</th>
+                                        <th>Nome</th>
                                         <td>{this.state.name}</td>
                                     </tr>
                                     <tr>
-                                        <th>Telefone:</th>
+                                        <th>Telefone</th>
                                         <td>{this.state.phoneNumber}</td>
                                     </tr>
                                     <tr>
-                                        <th>Email:</th>
+                                        <th>Email</th>
                                         <td>{this.state.email}</td>
                                     </tr>
                                     <tr>
-                                        <th>Data de Nascimento:</th>
+                                        <th>Data de Nascimento</th>
                                         <td>{this.state.birthDate}</td>
                                     </tr>
                                     <tr>
-                                        <th>Endereço:</th>
+                                        <th>Endereço</th>
                                         <td>{this.state.address}</td>
                                     </tr>
                                     <tr>
-                                        <th>Sintomas:</th>
+                                        <th>Sintomas</th>
                                         <td>{this.state.symptoms}</td>
                                     </tr>
                                     <tr>
-                                        <th>Atendimento:</th>
-                                        <td>
+                                        <th>Atendimentos</th>
+                                        <td className='appointments'>
                                         {this.state.appointments.map((appointment) => (
                                             <NavLink key={appointment._id} to={`/appointments/${appointment._id}`}>
-                                                <p>{this.setDate(appointment.date)}</p>
-                                                <p>{appointment.time}</p>
+                                                <div className='appointment'> 
+                                                    <p>{this.setDate(appointment.date)}</p>
+                                                    <p>{appointment.time}</p> 
+                                                </div>
                                             </NavLink>
                                             )
                                         )}

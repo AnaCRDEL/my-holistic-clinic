@@ -60,51 +60,51 @@ class AppointmentDetails extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
+                <div className='appointment-details-page'>
+                    <div className='buttons-div-details'>
+                        <button className='button-edit-appointment' onClick={()=>{this.handleOnClick()}}> {this.state.editAppointment ? 'Cancelar' : 'Editar informações do Atendimento'}</button>
+                        <button className='button-cancel-appointment' onClick={()=>{this.handleOnClickDeleteAppointment()}}>Cancelar Atendimento</button>
+                    </div>
+                    {this.state.editAppointment === true ? 
                         <div>
-                        <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.editAppointment ? 'Cancelar' : 'Editar informações do Atendimento'}</button>
-                        <button className='button-deactivate' onClick={()=>{this.handleOnClickDeleteAppointment()}}>Cancelar Atendimento</button>
-                        {this.state.editAppointment === true ? 
-                            <div>
-                                <EditAppointment id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getAppointment={this.getAppointment}/>
-                            </div> :
-                            <div>
-                                <table cellSpacing='0' border='1' className='div-table-details'>
-                                    <tbody>
-                                        <tr>
-                                            <th>Data:</th>
-                                            <td>{this.state.date}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Horário:</th>
-                                            <td>{this.state.time}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Paciente:</th>
-                                            <td><NavLink to={`/patients/${this.state.patient._id}`}> {this.state.patient.name} </NavLink></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Profissional:</th>
-                                            <td><NavLink to={`/professionals/${this.state.professional._id}`}>{this.state.professional.name}</NavLink></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Como estava o paciente antes do atendimento:</th>
-                                            <td>{this.state.beforeAppointment}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Como o paciente se sentiu após o atendimento:</th>
-                                            <td>{this.state.afterAppointment}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Quais técnicas e tratamentos foram utilizados no atendimento:</th>
-                                            <td>{this.state.treatment}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        }
+                            <EditAppointment id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getAppointment={this.getAppointment}/>
+                        </div> :
+                        <div className='div-appointments-details'>
+                            <table cellSpacing='0' border='1' className='appointment-details-table'>
+                                <tbody>
+                                    <tr>
+                                        <th>Data:</th>
+                                        <td>{this.state.date}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Horário:</th>
+                                        <td>{this.state.time}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Paciente:</th>
+                                        <td><NavLink to={`/patients/${this.state.patient._id}`}> {this.state.patient.name} </NavLink></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Profissional:</th>
+                                        <td><NavLink to={`/professionals/${this.state.professional._id}`}>{this.state.professional.name}</NavLink></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Como estava o paciente antes do atendimento:</th>
+                                        <td>{this.state.beforeAppointment}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Como o paciente se sentiu após o atendimento:</th>
+                                        <td>{this.state.afterAppointment}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quais técnicas e tratamentos foram utilizados no atendimento:</th>
+                                        <td>{this.state.treatment}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                </div>
+                    }
+                    </div>
             </>
         )
     }

@@ -48,38 +48,43 @@ class ProfessionalDetails extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div>
-                    <button className='button-add' onClick={()=>{this.handleOnClick()}}> {this.state.editProfessional ? 'Cancelar' : 'Editar informações do Paciente'}</button>
+                <div className='professional-details-page'>
+                    <div className='buttons-div-details'> 
+                        <button className='button-edit-professional' onClick={()=>{this.handleOnClick()}}> {this.state.editProfessional ? 'Cancelar' : 'Editar informações'}</button>
+                    </div>
                     {this.state.editProfessional === true ? 
                         <div>
                             <EditProfessional id={this.props.match.params.id}/>
                         </div> :
+                        <div className='div-professional-details'>
 
-                        <table cellSpacing='0' border='1' className='div-table-details'>
+                        <table cellSpacing='0' border='1' className='professional-details-table'>
                                 <tbody> 
                                     <tr>
-                                        <th>Nome:</th>
+                                        <th>Nome</th>
                                         <td>{this.state.name}</td>
                                     </tr>
                                     <tr>
-                                        <th>Telefone:</th>
+                                        <th>Telefone</th>
                                         <td>{this.state.phoneNumber}</td>
                                     </tr>
                                     <tr>
-                                        <th>Email:</th>
+                                        <th>Email</th>
                                         <td>{this.state.email}</td>
                                     </tr>
                                     <tr>
-                                        <th>Especialidades:</th>
+                                        <th>Especialidades</th>
                                         <td>{this.state.knownTechniques}</td>
                                     </tr>
                                     <tr>
-                                        <th>Atendimentos:</th>
-                                        <td>
+                                        <th>Atendimentos</th>
+                                        <td className='appointments'>
                                             {this.state.appointments.map((appointment) => (
                                                 <NavLink key={appointment._id} to={`/appointments/${appointment._id}`}>
-                                                    <p>{this.setDate(appointment.date)}</p>
-                                                    <p>{appointment.time}</p>
+                                                    <div className='appointment'>
+                                                        <p>{this.setDate(appointment.date)}</p>
+                                                        <p>{appointment.time}</p>
+                                                    </div>
                                                 </NavLink>
                                                 )
                                             )}
@@ -87,6 +92,7 @@ class ProfessionalDetails extends Component {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
                     }
                 </div>
             </>
