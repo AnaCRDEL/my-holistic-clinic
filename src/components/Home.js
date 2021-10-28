@@ -21,42 +21,50 @@ class Home extends Component {
         return appointmentDate
     };
 
+    weekAppointments = (date) => {
+        const today = new Date();
+        const seventhDay = new Date();
+        seventhDay.setDate(seventhDay.getDate() + 7);
+        const getDate = this.formatDate(date);
+        console.log(getDate, today, this.formatDate(seventhDay))
+        if (getDate >= today) {
+            return true
+        } else {
+            return console.log(false)
+        }
+    };
+
     componentDidMount = async () => {
         this.getAppointments();
     };
 
     render() {
-        console.log(new Date().getDate() + 7)
         return(
             <>
                 <div>
                     <Navbar/>
                 </div>
-                <div>
+                <div className='home-page'>
                     <h3>Atendimentos essa semana:</h3>
-                    <table cellSpacing='0' border='1' className='div-table'>
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Horário</th>
-                                <th>Profissional</th>
-                                <th>Paciente</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.appointments.map((appointment) => (
-                                this.formatDate(appointment.date) >= this.formatDate(new Date()) && this.formatDate(appointment.date) < (this.formatDate(new Date().getDate() + 7)) ? 
-                                <tr key={appointment._id}>
-                                    <td><NavLink to={`appointments/${appointment._id}`}>{this.formatDate(appointment.date)}</NavLink></td>
-                                    <td>{appointment.time}</td>
-                                    <td>{appointment.professional.name}</td>
-                                    <td>{appointment.patient.name}</td>
-                                </tr>
-                                : null 
-                            )
-                            )}
-                        </tbody>
-                    </table>
+                    <div className='div-appointment-cards'> 
+                        {this.state.appointments.map((appointment) => (
+                            this.weekAppointments(appointment.date) ? 
+                            <div className='appointment-card' key={appointment._id}> 
+                                <div cellSpacing='0' border='1' className='div-appointment'>
+                                    <p className='professional-name'>{appointment.professional.name}</p>
+                                    <p>Dia: {this.formatDate(appointment.date)}</p>
+                                    <p>Horário: {appointment.time}</p>
+                                    <p>Paciente: <br></br>
+                                    {appointment.patient.name}</p> 
+                                </div>
+                                <div>
+                                    <NavLink className='appointment-details-link' to={`appointments/${appointment._id}`}>Ver detalhes</NavLink>
+                                </div>
+                            </div>
+                            : null
+                            ) 
+                        )}
+                    </div>
                 </div>
             </>
         )

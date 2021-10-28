@@ -79,6 +79,14 @@ class Api {
         }
     };
     
+    updatedPictureProfessional = async (id, payload) => {
+        try {
+            await this.api.post(`/professionals/${id}/profile-picture`, payload);
+        } catch (error) {
+            console.log('updatedPictureProfessional error', error)
+        }
+    };
+
     getPatients = async () => {
         try {
             return await this.api.get('/patients')
@@ -152,7 +160,6 @@ class Api {
             console.log('deleteAppointment error', error)
         }
     };
-
 };
 
 export default new Api();

@@ -48,7 +48,7 @@ class AddProfessional extends Component {
                     <label name='email'>Email</label>
                     <input type='text' name='email' value={this.state.email} onChange={this.handleInput}/>
                     <label name='phoneNumber'>Telefone</label>
-                    <input type='number' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleInput}/>
+                    <input type='tel' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleInput}/>
                     <label name='knownTechniques'>Especialidades</label>
                     <input type='text' name='knownTechniques' value={this.state.knownTechniques} onChange={this.handleInput}/>
                     <label>Password</label>

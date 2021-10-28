@@ -41,6 +41,7 @@ body {
 
 /* PACIENTES PAGE */
 
+.home-page,
 .patients-page,
 .professionals-page, 
 .appointments-page,
@@ -51,6 +52,7 @@ body {
     margin: 30px 80px 0 80px;
 }
 
+.home-page h2,
 .patients-page h2,
 .professionals-page h2,
 .appointments-page h2,
@@ -177,11 +179,18 @@ body {
 }
 
 .patient-details-table,
-.professional-details-table,
 .appointment-details-table {
     background-color: #FFFFFF;
     text-align: left;
     width: 100%;
+    color: black;
+    margin: 0;
+}
+
+.professional-details-table {
+    background-color: #FFFFFF;
+    text-align: left;
+    width: 80%;
     color: black;
     margin: 0;
 }
@@ -276,21 +285,36 @@ body {
     font-size: 14px;
 }
 
+.div-appointment-cards {
+    display: flex;
+    justify-content: space-between;
+}
+
 .appointment-card {
+    justify-content: space-between;
     border: 2px solid #b6b3b3;
     width: 300px;
     display: flex;
-    justify-content: space-between;
     padding: 5px;
     margin: 0px 10px 10px 0px;
 }
 
 .div-appointment {
-    line-height: 10px;
+    line-height: 20px;
 }
 
 .professional-name,
 .appointment-details-link {
     color: #1E5049;
     font-weight: bold;
+}
+
+.div-professional-details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.professional-pic {
+    width: 150px;
+    border-radius: 10px;
 }

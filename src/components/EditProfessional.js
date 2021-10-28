@@ -36,6 +36,8 @@ class EditProfessional extends Component {
         try {
             await api.updatedProfessional(this.props.id, this.state);
             await this.getProfessional();
+            await this.props.handleOnClick();
+            await this.props.getProfessional();
         } catch (error) {
             console.log(error)
         }

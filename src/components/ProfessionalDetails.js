@@ -12,18 +12,21 @@ class ProfessionalDetails extends Component {
         email: '',
         knownTechniques: '',
         appointments: [],
-        editProfessional: false
+        editProfessional: false,
+        profilePicture: '',
+        file: {}
     };
 
     getProfessional = async () => {
         const response = await api.getOneProfessional(this.props.match.params.id);
-        const {name, phoneNumber, email, knownTechniques, appointments} = response.data;
+        const {name, phoneNumber, email, knownTechniques, appointments, profilePicture} = response.data;
         this.setState({
             name, 
             phoneNumber, 
             email, 
             knownTechniques,
-            appointments
+            appointments,
+            profilePicture
         })
     }
 
@@ -42,6 +45,27 @@ class ProfessionalDetails extends Component {
         });
     }; 
 
+    handleOnChange = (event) => {
+        const file = event.target.files[0]
+        this.setState({
+            file
+        })
+    }
+
+    handleOnSubmit = async (event) => {
+        event.preventDefault();
+        const id = this.props.match.params.id
+        const uploadData = new FormData();
+        uploadData.append('image', this.state.file)
+        console.log(uploadData)
+        try {
+            const test = await api.updatedPictureProfessional(id, uploadData)
+            console.log(test)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
     render() {
         return(
             <>
@@ -54,11 +78,18 @@ class ProfessionalDetails extends Component {
                     </div>
                     {this.state.editProfessional === true ? 
                         <div>
-                            <EditProfessional id={this.props.match.params.id}/>
+                            <EditProfessional handleOnClick={()=>{this.handleOnClick()}} getProfessional={this.getProfessional} id={this.props.match.params.id}/>
                         </div> :
                         <div className='div-professional-details'>
-
-                        <table cellSpacing='0' border='1' className='professional-details-table'>
+                            <div className='div-pic'>
+                                <img className='professional-pic' src={this.state.profilePicture} alt='professional-pic' />
+                                <form>
+                                    <label>Mudar a foto do profissional</label>
+                                    <input type='file' onChange={this.handleOnChange}></input>
+                                    <button type='submit' onClick={this.handleOnSubmit}>Confirmar</button>
+                                </form>
+                            </div> 
+                            <table cellSpacing='0' border='1' className='professional-details-table'>
                                 <tbody> 
                                     <tr>
                                         <th>Nome</th>

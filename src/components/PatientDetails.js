@@ -22,7 +22,7 @@ class PatientDetails extends Component {
 
     getPatient = async () => {
         const response = await api.getOnePatient(this.props.match.params.id);
-        const { name, phoneNumber, birthDate, email, address, symptoms, appointments, isActive } = response.data;
+        const { name, phoneNumber, birthDate, email, address, symptoms, appointments, isActive, deactivationReason } = response.data;
         this.setState({
             name,
             phoneNumber,
@@ -31,6 +31,7 @@ class PatientDetails extends Component {
             symptoms,
             appointments,
             isActive,
+            deactivationReason,
             birthDate: this.setDate(birthDate)
         })
     };
@@ -68,10 +69,12 @@ class PatientDetails extends Component {
     handleOnClickActivePatient = async () => {
         if (await window.confirm('Tem certeza que deseja resativar esse cliente?')) {
             this.setState({
-                isActive: !this.state.isActive
+                isActive: !this.state.isActive,
+                deactivationReason: ''
             })
             const updatedPatient = {
-                isActive: this.state.isActive
+                isActive: this.state.isActive,
+                deactivationReason: ''
             }
             await api.updatedPatient(this.props.match.params.id, updatedPatient);
         }
@@ -99,6 +102,13 @@ class PatientDetails extends Component {
                         <div className='div-patient-details'>
                             <table cellSpacing='0' border='1' className='patient-details-table'>
                                 <tbody>
+                                    {this.state.deactivationReason ? 
+                                        <tr> 
+                                            <th>Motivo desativação</th>
+                                            <td>{this.state.deactivationReason}</td>
+                                        </tr>
+                                    : null
+                                    }
                                     <tr>
                                         <th>Nome</th>
                                         <td>{this.state.name}</td>

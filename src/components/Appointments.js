@@ -54,12 +54,13 @@ class Appointments extends Component {
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
                             this.formatDate(appointment.date) >= this.formatDate(new Date()) ? 
-                            <div className='appointment-card'> 
+                            <div className='appointment-card' key={appointment._id}> 
                                 <div cellSpacing='0' border='1' className='div-appointment'>
                                     <p className='professional-name'>{appointment.professional.name}</p>
                                     <p>Dia: {this.formatDate(appointment.date)}</p>
                                     <p>Horário: {appointment.time}</p>
-                                    <p>Paciente: {appointment.patient.name}</p>
+                                    <p>Paciente: <br></br>
+                                    {appointment.patient.name}</p> 
                                 </div>
                                 <div>
                                     <NavLink className='appointment-details-link' to={`appointments/${appointment._id}`}>Ver detalhes</NavLink>
