@@ -16,22 +16,21 @@ class Home extends Component {
         })
     }
 
+    toDate = (date) => {
+        return new Date(date.replace('Z', ''));
+    }
+
     formatDate = (date) => {
-        const appointmentDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
+        const appointmentDate = this.toDate(date).toLocaleDateString('br', {timeZone: 'UTC'})
         return appointmentDate
     };
 
     weekAppointments = (date) => {
-        const today = new Date();
-        const seventhDay = new Date();
-        seventhDay.setDate(seventhDay.getDate() + 7);
-        const getDate = this.formatDate(date);
-        console.log(getDate, today, this.formatDate(seventhDay))
-        if (getDate >= today) {
-            return true
-        } else {
-            return console.log(false)
-        }
+        const now = new Date();
+        var sevenDaysFromNow = new Date();
+        sevenDaysFromNow.setDate(now.getDate() + 7);
+        const appointmentDate = this.toDate(date)
+        return (+appointmentDate >= +now && +appointmentDate <= +sevenDaysFromNow)
     };
 
     componentDidMount = async () => {
