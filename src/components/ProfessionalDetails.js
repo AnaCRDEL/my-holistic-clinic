@@ -57,10 +57,9 @@ class ProfessionalDetails extends Component {
         const id = this.props.match.params.id
         const uploadData = new FormData();
         uploadData.append('image', this.state.file)
-        console.log(uploadData)
         try {
-            const test = await api.updatedPictureProfessional(id, uploadData)
-            console.log(test)
+            await api.updatedPictureProfessional(id, uploadData)
+            await this.getProfessional();
         } catch (error) {
             console.log(error)
         }
