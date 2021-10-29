@@ -18,8 +18,12 @@ class Appointments extends Component {
         })
     }
 
+    toDate = (date) => {
+        return new Date(date);
+    };
+
     formatDate = (date) => {
-        const appointmentDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
+        const appointmentDate = this.toDate(date).toLocaleString('pt-BR')
         return appointmentDate
     };
 
@@ -39,11 +43,11 @@ class Appointments extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='appointments-page'>
+                <div className='div-page'>
                     <h2>Atendimentos</h2>
                     <div className='div-buttons'> 
-                        <button className='button-add-appointment' onClick={()=>{this.handleOnClick()}}> {this.state.addAppointment ? 'Cancelar' : 'Criar novo atendimento'}</button>
-                        <NavLink to='/past-appointments'><button className='past-appointments'> Atendimentos realizados </button></NavLink>
+                        <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.addAppointment ? 'Cancelar' : 'Criar novo atendimento'}</button>
+                        <NavLink to='/past-appointments'><button className='secondary-button'> Atendimentos realizados </button></NavLink>
                         {this.state.addAppointment === true ? 
                             <div>
                                 <AddAppointment getAppointments={this.getAppointments}/>
@@ -53,12 +57,11 @@ class Appointments extends Component {
                     </div>
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
-                            this.formatDate(appointment.date) >= this.formatDate(new Date()) ? 
                             <div className='appointment-card' key={appointment._id}> 
                                 <div cellSpacing='0' border='1' className='div-appointment'>
                                     <p className='professional-name'>{appointment.professional.name}</p>
-                                    <p>Dia: {this.formatDate(appointment.date)}</p>
-                                    <p>Horário: {appointment.time}</p>
+                                    <p>Dia & Horário: <br></br>
+                                    {this.formatDate(appointment.dateTime)}</p>
                                     <p>Paciente: <br></br>
                                     {appointment.patient.name}</p> 
                                 </div>
@@ -66,8 +69,7 @@ class Appointments extends Component {
                                     <NavLink className='appointment-details-link' to={`appointments/${appointment._id}`}>Ver detalhes</NavLink>
                                 </div>
                             </div>
-                            : null
-                            ) 
+                            )
                         )}
                     </div>
                 </div>

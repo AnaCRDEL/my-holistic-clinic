@@ -13,6 +13,7 @@ class ProfessionalDetails extends Component {
         knownTechniques: '',
         appointments: [],
         editProfessional: false,
+        editProfessionalPicture: false,
         profilePicture: '',
         file: {}
     };
@@ -34,9 +35,13 @@ class ProfessionalDetails extends Component {
         await this.getProfessional();
     };
 
-    setDate = (date) => {
-        const newDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
-        return newDate;
+    toDate = (date) => {
+        return new Date(date);
+    };
+
+    formatDate = (date) => {
+        const appointmentDate = this.toDate(date).toLocaleString('pt-BR')
+        return appointmentDate
     };
 
     handleOnClick = () => {
@@ -45,12 +50,18 @@ class ProfessionalDetails extends Component {
         });
     }; 
 
+    handleOnClickPicture = () => {
+        this.setState({
+            editProfessionalPicture: !this.state.editProfessionalPicture
+        });
+    };
+
     handleOnChange = (event) => {
         const file = event.target.files[0]
         this.setState({
             file
         })
-    }
+    };
 
     handleOnSubmit = async (event) => {
         event.preventDefault();
@@ -60,6 +71,9 @@ class ProfessionalDetails extends Component {
         try {
             await api.updatedPictureProfessional(id, uploadData)
             await this.getProfessional();
+            this.setState({
+                editProfessionalPicture: !this.state.editProfessionalPicture
+            });
         } catch (error) {
             console.log(error)
         }
@@ -71,9 +85,12 @@ class ProfessionalDetails extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='professional-details-page'>
-                    <div className='buttons-div-details'> 
-                        <button className='button-edit-professional' onClick={()=>{this.handleOnClick()}}> {this.state.editProfessional ? 'Cancelar' : 'Editar informações'}</button>
+                <div className='div-page'>
+                    <div className='div-buttons-right'> 
+                        <div className='div-button-left-professionals'> 
+                            <NavLink to='/professionals'><button className='primary-button'> Voltar para Profissionais</button></NavLink>
+                        </div>
+                        <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.editProfessional ? 'Cancelar' : 'Editar informações'}</button>
                     </div>
                     {this.state.editProfessional === true ? 
                         <div>
@@ -82,11 +99,14 @@ class ProfessionalDetails extends Component {
                         <div className='div-professional-details'>
                             <div className='div-pic'>
                                 <img className='professional-pic' src={this.state.profilePicture} alt='professional-pic' />
-                                <form>
-                                    <label>Mudar a foto do profissional</label>
-                                    <input type='file' onChange={this.handleOnChange}></input>
-                                    <button type='submit' onClick={this.handleOnSubmit}>Confirmar</button>
-                                </form>
+                                    <button className='primary-button' onClick={this.handleOnClickPicture}>Mudar a foto do profissional</button>
+                                    {this.state.editProfessionalPicture ? 
+                                    <form className='pic-form'>
+                                        <input type='file' onChange={this.handleOnChange}/>
+                                        <button className='secondary-button' type='submit' onClick={this.handleOnSubmit}>Confirmar</button>
+                                    </form>
+                                    : null
+                                    }
                             </div> 
                             <table cellSpacing='0' border='1' className='professional-details-table'>
                                 <tbody> 
@@ -112,7 +132,7 @@ class ProfessionalDetails extends Component {
                                             {this.state.appointments.map((appointment) => (
                                                 <NavLink key={appointment._id} to={`/appointments/${appointment._id}`}>
                                                     <div className='appointment'>
-                                                        <p>{this.setDate(appointment.date)}</p>
+                                                        <p>{this.formatDate(appointment.dateTime)}</p>
                                                         <p>{appointment.time}</p>
                                                     </div>
                                                 </NavLink>

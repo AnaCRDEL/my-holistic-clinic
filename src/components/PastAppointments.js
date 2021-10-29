@@ -38,8 +38,11 @@ class PastAppointments extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='appointments-page'>
+                <div className='div-page'>
                     <h2>Atendimentos Realizados</h2>
+                    <div className='div-buttons'> 
+                        <NavLink to='/appointments'><button className='primary-button'> Voltar para Atendimentos </button></NavLink>
+                    </div>
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
                             this.formatDate(appointment.date) < this.formatDate(new Date()) ? 

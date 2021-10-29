@@ -26,10 +26,13 @@ class NonActivePatients extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='non-active-patients-page'>
+                <div className='div-page'>
                     <h2>Pacientes Desativados</h2>
+                    <div className='div-buttons'> 
+                        <NavLink to='/patients'><button className='primary-button'> Voltar para Pacientes </button></NavLink>
+                    </div>
                     <div className='div-patients-table'>
-                        <table cellSpacing='0' border='1' className='patient-table'>
+                        <table cellSpacing='0' border='1' className='table'>
                             <thead>
                                 <tr>
                                     <th>Nome</th>

@@ -8,18 +8,32 @@ const { Component } = require("react");
 class Patients extends Component {
     state = {
         patients: [],
+        searchPatients: [],
         addPatient: false
     };
 
     getPatients = async () => {
         const response = await api.getPatients();
         this.setState({
-            patients: response.data
+            patients: response.data,
+            searchPatients: response.data
         })
     }
 
     componentDidMount = async () => {
         this.getPatients();
+    };
+
+    handleSearchFilter(event){
+        const copyPatients = [...this.state.patients]
+        let filteredPatients = copyPatients.filter(element=>{
+            let nameLow = element.name.toLowerCase()
+            let eventLow = event.target.value.toLowerCase()
+            return nameLow.includes(eventLow)
+        })
+        this.setState({
+            searchPatients: filteredPatients
+        }) 
     };
 
     handleOnClick = () => {
@@ -34,11 +48,11 @@ class Patients extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='patients-page'>
+                <div className='div-page'>
                     <h2>Pacientes</h2>
                     <div className='div-buttons'>
-                        <button className='button-add-patient' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
-                        <NavLink to='/non-active-patients'><button className='button-non-active-patients'>Pacientes desativados</button></NavLink>
+                        <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.addPatient ? 'Cancelar' : 'Cadastrar novo paciente'}</button>
+                        <NavLink to='/non-active-patients'><button className='secondary-button'>Pacientes desativados</button></NavLink>
                         {this.state.addPatient === true ? 
                             <div>
                                 <AddPatient getPatients={this.getPatients}/>
@@ -47,7 +61,10 @@ class Patients extends Component {
                         }
                     </div>
                     <div className='div-patients-table'>
-                        <table cellSpacing='0' border='1' className='patient-table'>
+                        <form>
+                            <input className='search-bar' type='text' placeholder='Procurar por paciente' name='filterPatients' onChange={(event)=>{this.handleSearchFilter(event)}}/>
+                        </form>
+                        <table cellSpacing='0' border='1' className='table'>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -55,7 +72,7 @@ class Patients extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.patients.map((patient) => (
+                                {this.state.searchPatients.map((patient) => (
                                     patient.isActive ?  
                                     <tr key={patient._id}>
                                         <td><NavLink to={`patients/${patient._id}`}>{patient.name}</NavLink></td>

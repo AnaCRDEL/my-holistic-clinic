@@ -3,8 +3,7 @@ import api from '../utils/api.utils';
 
 class AddAppointment extends Component {
     state = {
-        date: '',
-        time: '',
+        dateTime: '',
         patient: '',
         professional: '',
         patientsList: [],
@@ -23,6 +22,15 @@ class AddAppointment extends Component {
         this.setState({
             professionalsList: response.data
         })
+    };
+
+    toDate = (date) => {
+        return new Date(date);
+    };
+
+    formatDate = (date) => {
+        const appointmentDate = this.toDate(date).toLocaleString('pt-BR')
+        return appointmentDate
     };
 
     componentDidMount = async () => {
@@ -57,41 +65,38 @@ class AddAppointment extends Component {
             await api.addAppointment(this.state);
             await this.props.getAppointments();
             this.setState({
-                date: '',
-                time: '',
+                dateTime: '',
                 patient: '',
                 professional: '',
             });
         } catch (error) {
-            console.log(error)
+            alert('Erro ao criar atendimento. Verifique os dados inseridos.');
         }
     };
 
     render() {
         return (
-            <div className='div-add-professional'>
-                <form className='form-add-professional' onSubmit={this.handleSubmit}>
-                <label name='date'>Data:</label>
-                <input type='date' name='date' value={this.state.date} onChange={this.handleChange} />
-                <label name='time'>Horário:</label>
-                <input type='time' name='time' value={this.state.time} onChange={this.handleChange} />
-                <label name='patient'>Paciente:</label>
-                <select name='patient' onChange={this.handlePatientChange}>
-                    <option value=''>Selecione</option>
-                    {this.state.patientsList.map((patient) => (
-                        <option key={patient._id} value={patient.name}>{patient.name}</option>
-                        )
-                    )}
-                </select> 
-                <label name='professional'>Profissional:</label>
-                <select name='professional' onChange={this.handleProfessionalChange}>
-                    <option value=''>Selecione</option>
-                    {this.state.professionalsList.map((professional) => (
-                        <option key={professional._id} value={professional.name} onChange={this.handleSelectChange}>{professional.name}</option>
-                        )
-                    )}
-                </select> 
-                <button className='button-form' type='submit'>Criar</button>
+            <div className='div-add'>
+                <form className='form-add' onSubmit={this.handleSubmit}>
+                    <label name='dateTime'>Data & Horário:</label>
+                    <input type="datetime-local" name="dateTime" value={this.formatDate(this.state.dateTime)} onChange={this.handleChange} />
+                    <label name='patient'>Paciente:</label>
+                    <select name='patient' onChange={this.handlePatientChange}>
+                        <option value=''>Selecione</option>
+                        {this.state.patientsList.map((patient) => (
+                            <option key={patient._id} value={patient.name}>{patient.name}</option>
+                            )
+                        )}
+                    </select> 
+                    <label name='professional'>Profissional:</label>
+                    <select name='professional' onChange={this.handleProfessionalChange}>
+                        <option value=''>Selecione</option>
+                        {this.state.professionalsList.map((professional) => (
+                            <option key={professional._id} value={professional.name} onChange={this.handleSelectChange}>{professional.name}</option>
+                            )
+                        )}
+                    </select> 
+                    <button className='button-form' type='submit'>Criar</button>
                 </form>
             </div>
         )

@@ -1,4 +1,4 @@
-/*  Colours 
+/*  Colors
 Green #1E5049
 Beige #CBAF97   
 */
@@ -39,32 +39,19 @@ body {
     margin: 5px 50px 0 20px;
 }
 
-/* PACIENTES PAGE */
+/* MAIN PAGES */
 
-.home-page,
-.patients-page,
-.professionals-page, 
-.appointments-page,
-.patient-details-page,
-.professional-details-page,
-.appointment-details-page,
-.non-active-patients-page {
+.div-page {
     margin: 30px 80px 0 80px;
 }
 
-.home-page h2,
-.patients-page h2,
-.professionals-page h2,
-.appointments-page h2,
-.non-active-patients-page h2 {
+.div-page h2 {
     font-size: 30px;
     color: #1E5049;
     margin: 0;
 }
 
-.patient-table,
-.professional-table,
-.appointment-table {
+.table {
     background-color: #FFFFFF;
     border: 0px;
     width: 90%;
@@ -72,45 +59,52 @@ body {
     margin: 0;
 }
 
-.patient-table thead,
-.professional-table thead,
-.appointment-table thead{
+.table thead {
     background-color: #CBAF97;
     color: #FFFFFF;
     text-align: left;
     margin: 0;
 }
 
-.patient-table th,
-.patient-table td,
-.professional-table th,
-.professional-table td,
-.appointment-table th,
-.appointment-table td{
+.table th,
+.table td {
     margin: 0;
     padding: 5px 0 5px 15px;
 }
 
-.patient-table a,
-.professional-table a,
-.appointment-table a {
+.table a {
     text-decoration: none;
     color: #000000;
 }
 
-.patient-table a:hover,
-.professional-table a:hover,
-.appointment-table a:hover {
+.table a:hover {
     text-decoration: none;
     color: #CBAF97;
 }
 
-.button-add-patient,
-.button-edit-patient,
-.button-add-professional,
-.button-edit-professional,
-.button-edit-appointment,
-.button-add-appointment {
+/* BUTTONS */
+
+.div-button-left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 70%;
+}
+
+.div-button-left-professionals {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+}
+
+.div-buttons-right {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.primary-button {
     font-weight: bold;
     border: 0px;
     border-radius: 5px;
@@ -121,11 +115,7 @@ body {
     margin: 20px 20px 20px 0;
 }
 
-.button-non-active-patients,
-.button-deactivate,
-.button-activate,
-.past-appointments,
-.button-cancel-appointment {
+.secondary-button {
     font-weight: bold;
     border: 2px solid #CBAF97;
     border-radius: 5px;
@@ -135,10 +125,9 @@ body {
     color: #CBAF97;
 }
 
-/* Form add patient */
+/* ADD FORMS */
 
-.div-add-patient,
-.div-add-professional {
+.div-add {
     background-color: #CBAF97;
     color: #FFFFFF;
     width: 30%;
@@ -146,16 +135,14 @@ body {
     padding: 0px 10px 20px 10px;
 }
 
-.form-add-patients,
-.form-add-professional {
+.form-add {
     display: flex;
     flex-direction: column;
 }
 
-.form-add-patients input,
-.form-add-patients textarea,
-.form-add-professional input,
-.form-add-professional select {
+.form-add input,
+.form-add textarea,
+.form-add select {
     color: #1E5049;
     background-color: #FFFFFF;
 }
@@ -170,16 +157,14 @@ body {
     border-radius: 5px;
 }
 
-/* Patient details page */
+/* DETAILS PAGES */
 
-.buttons-div-details {
+.div-professional-details {
     display: flex;
-    justify-content: right;
-    align-items: center;
+    justify-content: space-around;
 }
 
-.patient-details-table,
-.appointment-details-table {
+.details-table {
     background-color: #FFFFFF;
     text-align: left;
     width: 100%;
@@ -195,9 +180,8 @@ body {
     margin: 0;
 }
 
-.patient-details-table th,
-.professional-details-table th,
-.appointment-details-table th{
+.details-table th,
+.professional-details-table th {
     background-color: #CBAF97;
     color: #FFFFFF;
     text-align: right;
@@ -205,24 +189,25 @@ body {
     padding: 5px 10px 5px 0;
 }
 
-.patient-details-table td,
-.professional-details-table td,
-.appointment-details-table td{
+.details-table td,
+.professional-details-table td {
     background-color: #FFFFFF;
     color: #4D3E51;
     text-align: left;
     padding: 5px 0 5px 10px;
 }
 
-.appointment-details-table a {
+.details-table a {
     text-decoration: none;
     color: #000000;
 }
 
-.appointment-details-table a:hover {
+.details-table a:hover {
     text-decoration: none;
     color: #CBAF97;
 }
+
+/* APPOINTMENTS DETAILS PAGES */
 
 .appointments {
     display: flex;
@@ -249,7 +234,7 @@ body {
     color: black
 }
 
-/* Form edit patient */
+/* EDIT FORMS */
 
 .div-edit-form {
     background-color: #FFFFFF;
@@ -285,6 +270,8 @@ body {
     font-size: 14px;
 }
 
+/* APPOINTMENTS PAGE/CARDS*/
+
 .div-appointment-cards {
     display: flex;
     justify-content: space-between;
@@ -309,12 +296,73 @@ body {
     font-weight: bold;
 }
 
-.div-professional-details {
+/* PROFESSIONAL PICTURE */
+
+.div-pic {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+}
+
+.pic-form {
+    font-size: 15px;
 }
 
 .professional-pic {
     width: 150px;
     border-radius: 10px;
+}
+
+/* SEARCH BAR PATIENTS */
+
+.search-bar {
+    width: 35%;
+    margin: 0 10px 10px 0;
+    border: 3px solid #CBAF97;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+/* PUBLIC PAGES */
+
+/* NAVBAR */
+
+/* body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+} */
+
+/* NAVBAR */
+
+.pub-nav-bar{
+    background-color: #1E5049;
+    text-align: left;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pub-nav-link {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin: 10px;
+}
+
+.pub-nav-link:hover {
+    color: #CBAF97
+}
+
+.login-button {
+    margin: 10px;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 5px;
+    height: 35px;
+    width: 180px;
+    background-color: #CBAF97;
+    color: #FFFFFF;
 }

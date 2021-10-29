@@ -7,12 +7,13 @@ import Professionals from './components/Professionals';
 import Home from './components/Home';
 import Patients from './components/Patients';
 import Appointments from './components/Appointments';
-import PublicHome from './components/public/Home'
 import PatientDetails from './components/PatientDetails';
 import ProfessionalDetails from './components/ProfessionalDetails';
 import AppointmentDetails from './components/AppointmentDetails';
 import NonActivePatients from './components/NonActivePatients';
 import PastAppointments from './components/PastAppointments';
+
+import PublicHome from './components/public/PublicHome'
 
 
 function App() {

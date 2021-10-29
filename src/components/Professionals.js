@@ -34,10 +34,10 @@ class Professionals extends Component {
                 <div>
                     <Navbar/>
                 </div>
-                <div className='professionals-page'>
+                <div className='div-page'>
                     <h2>Profissionais</h2>
                     <div className='div-buttons'>
-                        <button className='button-add-professional' onClick={()=>{this.handleOnClick()}}> {this.state.addProfessional ? 'Cancelar' : 'Cadastrar novo profissional'}</button>
+                        <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.addProfessional ? 'Cancelar' : 'Cadastrar novo profissional'}</button>
                         {this.state.addProfessional === true ? 
                             <div>
                                 <AddProfessional getProfessionals={this.getProfessionals}/>
@@ -46,7 +46,7 @@ class Professionals extends Component {
                         }
                     </div>
                     <div className='div-professionals-table'>
-                        <table cellSpacing='0' border='1' className='professional-table'>
+                        <table cellSpacing='0' border='1' className='table'>
                             <thead>
                                 <tr>
                                     <th>Nome</th>

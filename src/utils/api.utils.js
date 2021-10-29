@@ -18,13 +18,13 @@ class Api {
             (error) => console.log(error)
         );
 
-        this.api.interceptors.response.use(
-            (response) => response,
-            (error) => {
-                localStorage.removeItem('token')
-                window.location = '/login'
-            }
-        )
+        // this.api.interceptors.response.use(
+        //     (response) => response,
+        //     (error) => {
+        //         localStorage.removeItem('token')
+        //         window.location = '/login'
+        //     }
+        // )
     };
 
     signup = async (payload) => {
@@ -68,6 +68,7 @@ class Api {
             await this.api.put(`/professionals/${id}`, payload);
         } catch (error) {
             console.log('updateProfessional error', error)
+            throw new Error(error)
         }
     };
 
@@ -84,6 +85,7 @@ class Api {
             await this.api.post(`/professionals/${id}/profile-picture`, payload);
         } catch (error) {
             console.log('updatedPictureProfessional error', error)
+            throw new Error(error)
         }
     };
 
@@ -109,6 +111,7 @@ class Api {
             await this.api.post('/patients', payload);
         } catch (error) {
             console.log('addPatient error', error)
+            throw new Error(error)
         }
     };
 
@@ -117,6 +120,7 @@ class Api {
             await this.api.put(`/patients/${id}`, payload);
         } catch (error) {
             console.log('updatePatient error', error)
+            throw new Error(error)
         }
     };
 
@@ -142,6 +146,7 @@ class Api {
             await this.api.post('/appointments', payload);
         } catch (error) {
             console.log('addAppointment error', error)
+            throw new Error(error)
         }
     };
 
@@ -150,6 +155,7 @@ class Api {
             await this.api.put(`/appointments/${id}`, payload);
         } catch (error) {
             console.log('updatedAppointment error', error)
+            throw new Error(error)
         }
     };
 

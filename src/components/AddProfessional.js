@@ -33,16 +33,14 @@ class AddProfessional extends Component {
             })
         } catch (error) {
             console.log(error)
-            this.setState({
-                message: 'Invalid or already registered information'
-            })
+            alert('Erro ao criar profissional. Informações inválidas ou já cadastradas.')
         } 
     };
 
     render() {
         return (
-            <div className='div-add-professional'> 
-                <form className='form-add-professional' onSubmit={this.handleSubmit}>
+            <div className='div-add'> 
+                <form className='form-add' onSubmit={this.handleSubmit}>
                     <label name='name'>Nome</label>
                     <input type='text' name='name' value={this.state.name} onChange={this.handleInput}/>
                     <label name='email'>Email</label>

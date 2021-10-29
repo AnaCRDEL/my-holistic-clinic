@@ -39,7 +39,7 @@ class EditProfessional extends Component {
             await this.props.handleOnClick();
             await this.props.getProfessional();
         } catch (error) {
-            console.log(error)
+            alert('Erro ao editar Paciente. Verifique os dados inseridos.');
         }
     };
 

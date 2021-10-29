@@ -36,6 +36,7 @@ class AddPatient extends Component {
         try {
             await api.addPatient(this.state)
             await this.props.getPatients();
+            // this.props.addPatient = false;
             this.setState({
                 name: '',
                 phoneNumber: '',
@@ -45,14 +46,14 @@ class AddPatient extends Component {
                 symptoms: ''
             });
         } catch (error) {
-            console.log(error)
+            alert('Erro ao criar paciente. Verifique os dados inseridos.');
         }
     };
 
     render() {
         return (
-            <div className='div-add-patient'>
-                <form className='form-add-patients' onSubmit={this.handleSubmit}>
+            <div className='div-add'>
+                <form className='form-add' onSubmit={this.handleSubmit}>
                 <label name='data'>Nome:</label>
                 <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
                 <label name='phoneNumber'>Telefone:</label>
@@ -62,7 +63,7 @@ class AddPatient extends Component {
                 <label name='email'>Email:</label>
                 <input type='email' name='email' value={this.state.email} onChange={this.handleChange} />
                 <label name='address'>Endereço:</label>
-                <input type='text' name='address' value={this.state.endereço} onChange={this.handleChange} />
+                <input type='text' name='address' value={this.state.address} onChange={this.handleChange} />
                 <label name='symptoms'>Sintomas:</label>
                 <textarea name='symptoms' value={this.state.symptoms} onChange={this.handleChange}/>
                 <button className='button-form' type='submit'>Criar</button>

@@ -3,8 +3,7 @@ import api from '../utils/api.utils';
 
 class EditAppointment extends Component {
     state = {
-        date: '',
-        time: '',
+        dateTime: '',
         patient: '',
         professional: '',
         beforeAppointment: '',
@@ -24,10 +23,9 @@ class EditAppointment extends Component {
 
     getAppointment = async () => {
         const response = await api.getOneAppointment(this.props.id);
-        const {date, time, patient, professional, beforeAppointment, afterAppointment, treatment} = response.data;
+        const {dateTime, patient, professional, beforeAppointment, afterAppointment, treatment} = response.data;
         this.setState({
-            date: this.setDate(date), 
-            time, 
+            dateTime, 
             patient, 
             professional, 
             beforeAppointment, 
@@ -70,7 +68,7 @@ class EditAppointment extends Component {
             await this.props.handleOnClick();
             await this.props.getAppointment();
         } catch (error) {
-            console.log(error)
+            alert('Erro ao editar atendimento. Verifique os dados inseridos.');
         }
     };
 
@@ -78,10 +76,8 @@ class EditAppointment extends Component {
         return (
             <div className='div-edit-form'>
                 <form className='edit-form' onSubmit={this.handleSubmit}>
-                <label name='date'>Data:</label>
-                <input type='date' name='date' value={this.state.date} onChange={this.handleChange} />
-                <label name='time'>Telefone:</label>
-                <input type='time' name='time' value={this.state.time} onChange={this.handleChange} />
+                <label name='dateTime'>Data & Horário:</label>
+                <input type="datetime-local" name="dateTime" value={this.state.dateTime} onChange={this.handleChange} />
                 <label name='patient'>Paciente:</label>
                 <input type='text' name='patient' readOnly value={this.state.patient.name} onChange={this.handleChange} />
                 <label name='professional'>Profissional:</label>

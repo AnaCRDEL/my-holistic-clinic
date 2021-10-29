@@ -32,14 +32,24 @@ class PatientDetails extends Component {
             appointments,
             isActive,
             deactivationReason,
-            birthDate: this.setDate(birthDate)
+            birthDate: this.formatDate(birthDate)
         })
     };
 
-    setDate = (date) => {
-        const newDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
-        return newDate;
+    toDate = (date) => {
+        return new Date(date);
     };
+
+    formatDate = (date) => {
+        const appointmentDate = this.toDate(date).toLocaleString('pt-BR')
+        return appointmentDate
+    };
+
+    // futureAppointments = (date) => {
+    //     const now = new Date();
+    //     const appointmentDate = this.toDate(date)
+    //     return (+appointmentDate >= +now)
+    // };
 
     componentDidMount = async () => {
         await this.getPatient();
@@ -81,26 +91,30 @@ class PatientDetails extends Component {
     };
 
     render() {
+        console.log(this.state.appointments)
         return(
             <>
                 <div>
                     <Navbar/>
                 </div>
-                <div className='patient-details-page'>
-                    <div className='buttons-div-details'> 
-                        <button className='button-edit-patient' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações'}</button>
+                <div className='div-page'>
+                    <div className='div-buttons-right'> 
+                        <div className='div-button-left'> 
+                            <NavLink to='/patients'><button className='primary-button'> Voltar para Pacientes</button></NavLink>
+                        </div>
+                        <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.editPatient ? 'Cancelar' : 'Editar informações'}</button>
                         {this.state.isActive ?
-                        <button className='button-deactivate' onClick={()=>{this.handleOnClickNonActivePatient()}}>Desativar Paciente</button>
+                        <button className='secondary-button' onClick={()=>{this.handleOnClickNonActivePatient()}}>Desativar Paciente</button>
                         : 
-                        <button className='button-activate' onClick={()=>{this.handleOnClickActivePatient()}}>Reativar Paciente</button>
+                        <button className='secondary-button' onClick={()=>{this.handleOnClickActivePatient()}}>Reativar Paciente</button>
                         }
                     </div>
-                    {this.state.editPatient === true ? 
+                    {this.state.editPatient ? 
                         <div>
                             <EditPatient id={this.props.match.params.id} handleOnClick={()=>{this.handleOnClick()}} getPatient={this.getPatient}/>
                         </div> :
                         <div className='div-patient-details'>
-                            <table cellSpacing='0' border='1' className='patient-details-table'>
+                            <table cellSpacing='0' border='1' className='details-table'>
                                 <tbody>
                                     {this.state.deactivationReason ? 
                                         <tr> 
@@ -134,13 +148,12 @@ class PatientDetails extends Component {
                                         <td>{this.state.symptoms}</td>
                                     </tr>
                                     <tr>
-                                        <th>Atendimentos</th>
+                                        <th>Atendimentos Futuros</th>
                                         <td className='appointments'>
                                         {this.state.appointments.map((appointment) => (
                                             <NavLink key={appointment._id} to={`/appointments/${appointment._id}`}>
                                                 <div className='appointment'> 
-                                                    <p>{this.setDate(appointment.date)}</p>
-                                                    <p>{appointment.time}</p> 
+                                                    <p>{this.formatDate(appointment.dateTime)}</p>
                                                 </div>
                                             </NavLink>
                                             )
