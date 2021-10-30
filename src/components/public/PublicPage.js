@@ -11,7 +11,7 @@ function PublicHome() {
           <div className='div-home'>
             <img className='home-img' src='/images/mhc-image2.jpg' alt='img1' />
             <div>
-              <h1>MHC Holistic Clinic</h1>  
+              <h1>MHC Holistic Therapies</h1>  
               <p>Pellentesque imperdiet, odio id dapibus dictum, felis diam hendrerit turpis, auctor elementum ex quam sed nibh. Morbi ut hendrerit orci, ut tincidunt felis. Suspendisse fermentum mi leo, sed gravida lorem tempor eu. Mauris neque lorem, molestie at massa nec, tempus congue justo. Nulla tristique ornare enim eu dapibus. Aliquam dictum nisi et suscipit ultrices. Donec venenatis id elit eget lobortis.</p>
             </div>
           </div>
