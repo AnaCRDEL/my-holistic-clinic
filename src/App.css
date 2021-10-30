@@ -341,11 +341,6 @@ body {
 
 /* PUBLIC PAGES */
 
-/* Green #1E5049
-Beige #CBAF97   */
-
-/* NAVBAR */
-
 .all-page {
     margin: 0;
 }
@@ -388,7 +383,12 @@ Beige #CBAF97   */
     margin: 0 20px 0 0;
 }
 
-.section-home,
+.section-home {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
 .section-professionals,
 .section-treatments {
     display: flex;
