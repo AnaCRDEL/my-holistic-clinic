@@ -13,13 +13,13 @@ import AppointmentDetails from './components/AppointmentDetails';
 import NonActivePatients from './components/NonActivePatients';
 import PastAppointments from './components/PastAppointments';
 
-import PublicHome from './components/public/PublicHome'
+import PublicPage from './components/public/PublicPage'
 
 
 function App() {
   return (
     <div className="App">
-      <Route exact path='/' component={PublicHome}/>
+      <Route exact path='/' component={PublicPage}/>
       <Route exact path='/home' component={Home}/>
       <Route exact path='/login' render= {(props) => <Login {...props}/> }/>
       <Route exact path='/professionals' component={Professionals}/>

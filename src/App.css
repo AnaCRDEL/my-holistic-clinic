@@ -4,7 +4,7 @@ Beige #CBAF97
 */
 
 body {
-    margin: 0;
+    margin: 0 0 50px 0;
     padding: 0;
     background-color: #FFFFFF;
     font-family: 'Roboto', sans-serif;
@@ -102,6 +102,21 @@ body {
     display: flex;
     justify-content: right;
     align-items: center;
+}
+
+.confirm-login-button {
+    font-weight: bold;
+    border: 0px;
+    border-radius: 5px;
+    height: 35px;
+    width: 80px;
+    background-color: #CBAF97;
+    color: #FFFFFF;
+    margin: 20px 20px 20px 20px;
+}
+
+.login-form input {
+    margin: 5px;
 }
 
 .primary-button {
@@ -326,19 +341,18 @@ body {
 
 /* PUBLIC PAGES */
 
+/* Green #1E5049
+Beige #CBAF97   */
+
 /* NAVBAR */
 
-/* body {
+.all-page {
     margin: 0;
-    padding: 0;
-    background-color: #FFFFFF;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-} */
-
-/* NAVBAR */
+}
 
 .pub-nav-bar{
+    position: fixed;
+    width: 100%;
     background-color: #1E5049;
     text-align: left;
     font-size: 18px;
@@ -363,7 +377,99 @@ body {
     border: 0px;
     border-radius: 5px;
     height: 35px;
-    width: 180px;
+    width: 100px;
     background-color: #CBAF97;
+    color: #FFFFFF;
+}
+
+.home-img {
+    width: 500px;
+    border-radius: 10px;
+    margin: 0 20px 0 0;
+}
+
+.section-home,
+.section-professionals,
+.section-treatments {
+    display: flex;
+    justify-content: center;
+}
+
+.div-home {
+    display: flex;
+    align-items: center;
+    background-color: #CBAF97;
+    color: #FFFFFF;
+    width: 80%;
+    margin: 20px 40px 20px 40px;
+    padding: 40px;
+} 
+
+.div-home p,
+.div-professionals p,
+.div-treatments p {
+    margin: 15px;
+}
+
+.div-home h1,
+.div-treatments h1,
+.div-professionals h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
+    margin: 10px;
+}
+
+.div-treatments {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CBAF97;
+    color: #FFFFFF;
+    width: 80%;
+    margin: 20px 40px 20px 40px;
+    padding: 40px;
+}
+
+.treatments-img {
+    width: 450px;
+    border-radius: 10px;
+    margin: 0 0px 0 0;
+}
+
+.professionals-img {
+    width: 350px;
+    border-radius: 10px;
+    margin: 0 20px 0 0;
+}
+
+.div-professionals {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CBAF97;
+    color: #FFFFFF;
+    width: 80%;
+    margin: 20px 40px 20px 40px;
+    padding: 40px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1E5049;
+    color: white;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: -50px;
+    line-height: 10px;
+}
+
+.footer-logo-img {
+    height: 80px;
+}
+
+.div-login-message {
     color: #FFFFFF;
 }

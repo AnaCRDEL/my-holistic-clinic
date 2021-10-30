@@ -3,7 +3,7 @@ import axios from 'axios';
 class Api {
     constructor() {
         this.api = axios.create({
-            baseURL: 'https://myholisticclinicapi.herokuapp.com'
+            baseURL: 'https://myholisticclinicapi.herokuapp.com/'
         });
         this.api.interceptors.request.use(
             (config) => {
@@ -18,13 +18,16 @@ class Api {
             (error) => console.log(error)
         );
 
-        // this.api.interceptors.response.use(
-        //     (response) => response,
-        //     (error) => {
-        //         localStorage.removeItem('token')
-        //         window.location = '/login'
-        //     }
-        // )
+        this.api.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                if (error.response.status === 401) {
+                    window.location = '/'
+                    return
+                }
+                throw error
+            }
+        )
     };
 
     signup = async (payload) => {

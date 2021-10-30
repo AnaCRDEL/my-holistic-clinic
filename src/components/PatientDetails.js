@@ -45,11 +45,11 @@ class PatientDetails extends Component {
         return appointmentDate
     };
 
-    // futureAppointments = (date) => {
-    //     const now = new Date();
-    //     const appointmentDate = this.toDate(date)
-    //     return (+appointmentDate >= +now)
-    // };
+    futureAppointments = (date) => {
+        const now = new Date();
+        const appointmentDate = this.toDate(date)
+        return (+appointmentDate >= +now)
+    };
 
     componentDidMount = async () => {
         await this.getPatient();
@@ -72,7 +72,11 @@ class PatientDetails extends Component {
                 deactivationReason: this.state.deactivationReason,
                 isActive: this.state.isActive
             }
-            await api.updatedPatient(this.props.match.params.id, updatedPatient);
+            try {
+                await api.updatedPatient(this.props.match.params.id, updatedPatient);
+            } catch (error) {
+                alert('Erro updatedPatient.');
+            }
         }
     };
 
@@ -83,15 +87,18 @@ class PatientDetails extends Component {
                 deactivationReason: ''
             })
             const updatedPatient = {
-                isActive: this.state.isActive,
-                deactivationReason: ''
+                deactivationReason: this.state.deactivationReason,
+                isActive: this.state.isActive
             }
-            await api.updatedPatient(this.props.match.params.id, updatedPatient);
+            try {
+                await api.updatedPatient(this.props.match.params.id, updatedPatient);
+            } catch (error) {
+                alert('Erro updatedPatient.');
+            }
         }
     };
 
     render() {
-        console.log(this.state.appointments)
         return(
             <>
                 <div>
@@ -151,11 +158,13 @@ class PatientDetails extends Component {
                                         <th>Atendimentos Futuros</th>
                                         <td className='appointments'>
                                         {this.state.appointments.map((appointment) => (
+                                            this.futureAppointments(appointment.dateTime) ?
                                             <NavLink key={appointment._id} to={`/appointments/${appointment._id}`}>
                                                 <div className='appointment'> 
                                                     <p>{this.formatDate(appointment.dateTime)}</p>
                                                 </div>
                                             </NavLink>
+                                            : null
                                             )
                                         )}
                                         </td>

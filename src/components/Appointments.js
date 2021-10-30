@@ -50,7 +50,7 @@ class Appointments extends Component {
                     <Navbar/>
                 </div>
                 <div className='div-page'>
-                    <h2>Atendimentos</h2>
+                    <h2>Próximos Atendimentos</h2>
                     <div className='div-buttons'> 
                         <button className='primary-button' onClick={()=>{this.handleOnClick()}}> {this.state.addAppointment ? 'Cancelar' : 'Criar novo atendimento'}</button>
                         <NavLink to='/past-appointments'><button className='secondary-button'> Atendimentos realizados </button></NavLink>

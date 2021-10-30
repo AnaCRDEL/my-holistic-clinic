@@ -61,6 +61,7 @@ class AddAppointment extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
+        event.target.value = 'Selecione'
         try {
             await api.addAppointment(this.state);
             await this.props.getAppointments();
@@ -84,7 +85,9 @@ class AddAppointment extends Component {
                     <select name='patient' onChange={this.handlePatientChange}>
                         <option value=''>Selecione</option>
                         {this.state.patientsList.map((patient) => (
+                            !patient.deactivationReason ? 
                             <option key={patient._id} value={patient.name}>{patient.name}</option>
+                            : null 
                             )
                         )}
                     </select> 

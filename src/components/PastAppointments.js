@@ -49,7 +49,7 @@ class PastAppointments extends Component {
                     <Navbar/>
                 </div>
                 <div className='div-page'>
-                    <h2>Atendimentos Realizados</h2>
+                    <h2>Atendimentos Anteriores</h2>
                     <div className='div-buttons'> 
                         <NavLink to='/appointments'><button className='primary-button'> Voltar para Atendimentos </button></NavLink>
                     </div>
@@ -59,8 +59,8 @@ class PastAppointments extends Component {
                             <div className='appointment-card'> 
                                 <div cellSpacing='0' border='1' className='div-appointment'>
                                     <p className='professional-name'>{appointment.professional.name}</p>
-                                    <p>Dia: {this.formatDate(appointment.date)}</p>
-                                    <p>Horário: {appointment.time}</p>
+                                    <p>Dia & Horário: <br></br>
+                                    {this.formatDate(appointment.dateTime)}</p>
                                     <p>Paciente: {appointment.patient.name}</p>
                                 </div>
                                 <div>

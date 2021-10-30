@@ -36,7 +36,6 @@ class AddPatient extends Component {
         try {
             await api.addPatient(this.state)
             await this.props.getPatients();
-            // this.props.addPatient = false;
             this.setState({
                 name: '',
                 phoneNumber: '',

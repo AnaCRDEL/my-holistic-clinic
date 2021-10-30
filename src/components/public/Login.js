@@ -20,7 +20,6 @@ class Login extends Component {
         try {
             await api.login(this.state)
             window.location = '/home'
-            // this.props.history.push('/home')
         } catch (error) {
             this.setState({
                 message: 'Login falhou'
@@ -31,15 +30,13 @@ class Login extends Component {
     render() {
         return (
             <div> 
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email</label>
-                    <input type='text' name='email' value={this.state.email} onChange={this.handleInput}/>
-                    <label>Password</label>
-                    <input type='password' name='password' value={this.state.password} onChange={this.handleInput}/>
-                    <button type='submit'>Login</button>
+                <form className='login-form' onSubmit={this.handleSubmit}>
+                    <input type='text' placeholder='Email' name='email' value={this.state.email} onChange={this.handleInput}/>
+                    <input type='password' placeholder='Password' name='password' value={this.state.password} onChange={this.handleInput}/>
+                    <button className='confirm-login-button' type='submit'>Login</button>
                 </form>
                 {this.state.message ? 
-                    <div>{this.state.message}</div> : null}
+                    <div className='div-login-message'>{this.state.message}</div> : null}
             </div>
         )
     }

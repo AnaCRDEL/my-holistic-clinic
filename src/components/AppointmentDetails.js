@@ -57,8 +57,6 @@ class AppointmentDetails extends Component {
     };
 
     render() {
-        console.log(this.state.dateTime)
-        console.log(this.formatDate(this.state.dateTime))
         return(
             <>
                 <div>
