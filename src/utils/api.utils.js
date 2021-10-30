@@ -3,7 +3,7 @@ import axios from 'axios';
 class Api {
     constructor() {
         this.api = axios.create({
-            baseURL: 'http://localhost:5000'
+            baseURL: 'https://myholisticclinicapi.herokuapp.com/'
         });
         this.api.interceptors.request.use(
             (config) => {
@@ -43,6 +43,7 @@ class Api {
             localStorage.setItem('token', token);
             localStorage.setItem('ID', ID);
         } catch (error) {
+            console.log(error)
             throw new Error(error)
         }
     };

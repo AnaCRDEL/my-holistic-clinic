@@ -17,9 +17,19 @@ class PastAppointments extends Component {
         })
     }
 
+    toDate = (date) => {
+        return new Date(date);
+    };
+
     formatDate = (date) => {
-        const appointmentDate = new Date(date).toLocaleDateString('br', {timeZone: 'UTC'})
+        const appointmentDate = this.toDate(date).toLocaleString('pt-BR')
         return appointmentDate
+    };
+    
+    pastAppointments = (date) => {
+        const now = new Date();
+        const appointmentDate = this.toDate(date)
+        return (+appointmentDate <= +now)
     };
 
     componentDidMount = async () => {
@@ -45,7 +55,7 @@ class PastAppointments extends Component {
                     </div>
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
-                            this.formatDate(appointment.date) < this.formatDate(new Date()) ? 
+                            this.pastAppointments(appointment.dateTime) ? 
                             <div className='appointment-card'> 
                                 <div cellSpacing='0' border='1' className='div-appointment'>
                                     <p className='professional-name'>{appointment.professional.name}</p>

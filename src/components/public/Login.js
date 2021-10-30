@@ -18,8 +18,9 @@ class Login extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await api.login(this.state) 
-            this.props.history.push('/home')
+            await api.login(this.state)
+            window.location = '/home'
+            // this.props.history.push('/home')
         } catch (error) {
             this.setState({
                 message: 'Login falhou'

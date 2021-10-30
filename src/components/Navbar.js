@@ -5,6 +5,12 @@ import { NavLink } from "react-router-dom";
 import '../App.css'
 
 class Navbar extends Component {
+
+    handleOnClick = () => {
+        localStorage.removeItem('token')
+        window.location = '/login'
+    };
+
     render() {
         return (
             <>
@@ -14,6 +20,7 @@ class Navbar extends Component {
                     <NavLink className='nav-link' to='/patients'>Pacientes</NavLink>
                     <NavLink className='nav-link' to='/professionals'>Profissionais</NavLink>
                     <NavLink className='nav-link' to='/appointments'>Atendimentos</NavLink>
+                    <button className='primary-button' onClick={()=>{this.handleOnClick()}}>Logout</button>
                 </div>
             </>
         )

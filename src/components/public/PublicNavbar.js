@@ -7,7 +7,7 @@ import Login from './Login';
 
 class PublicNavbar extends Component {
     state = {
-        loginForm: false
+        loginForm: false,
     }
 
     handleOnClick = () => {
@@ -16,7 +16,7 @@ class PublicNavbar extends Component {
         });
     }
 
-    render() {
+    render(props) {
         return (
             <>
                 <div className='pub-nav-bar'>  

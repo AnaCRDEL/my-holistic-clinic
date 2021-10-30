@@ -27,6 +27,12 @@ class Appointments extends Component {
         return appointmentDate
     };
 
+    futureAppointments = (date) => {
+        const now = new Date();
+        const appointmentDate = this.toDate(date)
+        return (+appointmentDate >= +now)
+    };
+
     componentDidMount = async () => {
         this.getAppointments();
     };
@@ -57,6 +63,7 @@ class Appointments extends Component {
                     </div>
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
+                            this.futureAppointments(appointment.dateTime) ?
                             <div className='appointment-card' key={appointment._id}> 
                                 <div cellSpacing='0' border='1' className='div-appointment'>
                                     <p className='professional-name'>{appointment.professional.name}</p>
@@ -69,6 +76,7 @@ class Appointments extends Component {
                                     <NavLink className='appointment-details-link' to={`appointments/${appointment._id}`}>Ver detalhes</NavLink>
                                 </div>
                             </div>
+                            : null 
                             )
                         )}
                     </div>

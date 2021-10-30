@@ -83,7 +83,7 @@ class Home extends Component {
                         <div></div>
                         }                    
                     </div>
-                    <h2>Atendimentos essa semana:</h2>
+                    <h2>Atendimentos dessa semana:</h2>
                     <div className='div-appointment-cards'> 
                         {this.state.appointments.map((appointment) => (
                             this.weekAppointments(appointment.dateTime) ? 

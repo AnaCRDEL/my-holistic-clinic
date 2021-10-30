@@ -57,7 +57,7 @@ class AddPatient extends Component {
                 <label name='data'>Nome:</label>
                 <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
                 <label name='phoneNumber'>Telefone:</label>
-                <input type='tel' name='phoneNumber' placeholder="(99)9999-99999" value={this.state.phoneNumber} onChange={this.handleChange} />
+                <input type='tel' name='phoneNumber' value={this.state.phoneNumber} onChange={this.handleChange} />
                 <label name='birthDate'>Data de Nascimento:</label>
                 <input type='date' name='birthDate' value={this.state.birthDate} onChange={this.handleChange} />
                 <label name='email'>Email:</label>

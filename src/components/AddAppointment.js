@@ -79,7 +79,7 @@ class AddAppointment extends Component {
             <div className='div-add'>
                 <form className='form-add' onSubmit={this.handleSubmit}>
                     <label name='dateTime'>Data & Horário:</label>
-                    <input type="datetime-local" name="dateTime" value={this.formatDate(this.state.dateTime)} onChange={this.handleChange} />
+                    <input type="datetime-local" name="dateTime" value={this.state.dateTime} onChange={this.handleChange} />
                     <label name='patient'>Paciente:</label>
                     <select name='patient' onChange={this.handlePatientChange}>
                         <option value=''>Selecione</option>
