@@ -3,7 +3,7 @@ import axios from 'axios';
 class Api {
     constructor() {
         this.api = axios.create({
-            baseURL: 'https://myholisticclinicapi.herokuapp.com/'
+            baseURL: 'https://myholisticclinicapi.herokuapp.com'
         });
         this.api.interceptors.request.use(
             (config) => {
