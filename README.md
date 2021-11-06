@@ -1,10 +1,10 @@
 # My Holistic Clinic
 
+Commercial website/internal system of a holistic therapy clinic. 
+
 ##### Back-end repository link: [my-holistic-clinic-api](https://github.com/AnaCRDEL/my-holistic-clinic-api)
 ##### Website link: [myholisticclinic.herokuapp](https://myholisticclinic.herokuapp.com/)
 #
-
-Commercial website/internal system of a holistic therapy clinic. 
 
 ## About project
 
